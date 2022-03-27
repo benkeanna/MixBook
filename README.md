@@ -5,3 +5,20 @@ https://uuapp.plus4u.net/uu-dockit-maing02/4e68298f1658473e9bf5692272883290/docu
 
 ## Trello
 https://trello.com/b/IcagYj44/bcaa-projekt
+
+## Local development
+- Install dependencies.
+
+`docker-compose run --no-deps app npm install`
+
+- Run it.
+
+`docker-compose up`
+
+- Stop it:
+
+`docker-compose down`
+  
+- Force rebuild if you need it.
+
+`docker-compose up --build --force-recreate`

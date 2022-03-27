@@ -7,8 +7,15 @@ services:
     ports:
       - "3000:3000"
       - "9229:9229"
+    volumes:
+      - "${PWD}/:/usr/src/app"
 
   postgres:
     image: postgres:11.2-alpine
     environment:
       POSTGRES_PASSWORD: postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
