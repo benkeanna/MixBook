@@ -15,10 +15,14 @@ https://trello.com/b/IcagYj44/bcaa-projekt
 
 `docker-compose up`
 
-- Stop it:
+- Stop it.
 
 `docker-compose down`
   
 - Force rebuild if you need it.
 
 `docker-compose up --build --force-recreate`
+
+- See it.
+
+`localhost:3000`
