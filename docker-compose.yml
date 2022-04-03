@@ -5,10 +5,10 @@ services:
     depends_on:
       - postgres
     ports:
-      - "3000:3000"
+      - "3001:3001"
       - "9229:9229"
     volumes:
-      - "${PWD}/:/usr/src/app"
+      - "${PWD}/backend:/usr/src/app"
 
   postgres:
     image: postgres:11.2-alpine

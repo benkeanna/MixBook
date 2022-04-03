@@ -3,11 +3,11 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+var apiRouter = require("./routes");
+var cors = require('cors')
+var app = express()
 
-//var indexRouter = require("./routes");
-//var usersRouter = require("./routes/users");
-
-var app = express();
+app.use(cors())
 
 // view engine jsem zakomentoval, pointless, pouzivame react
 // view engine setup
@@ -22,8 +22,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "../../frontend/build")));
 
 // express static staci
-//app.use("/", indexRouter);
-//app.use("/users", usersRouter);
+app.use("/api", apiRouter);
 
 // vyuziva view engine takze jsem taky vypnul, muzee resit pres react
 // catch 404 and forward to error handler
