@@ -1,7 +1,8 @@
 version: "3"
 services:
-  app:
-    build: .
+  backend:
+    build:
+      context: ./backend/
     depends_on:
       - postgres
     ports:
@@ -9,6 +10,14 @@ services:
       - "9229:9229"
     volumes:
       - "${PWD}/backend:/usr/src/app"
+
+  frontend:
+    build:
+      context: ./frontend/
+    volumes:
+      - ./frontend/:/usr/src/app
+    ports:
+      - "3000:3000"
 
   postgres:
     image: postgres:11.2-alpine
