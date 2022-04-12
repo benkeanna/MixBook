@@ -1,0 +1,28 @@
+$background-color: #ffcc5c;
+
+.recipe-card-container {
+  border: 2px solid #ff6f69;
+  width: 100%;
+  padding: 1rem 1rem 1rem 0.5rem;
+  background-color: $background-color;
+  border-radius: 20px;
+  position: relative;
+
+  h2 {
+    margin-left: 2rem;
+  }
+
+  .desc {
+    margin-left: 2.2rem;
+  }
+}
+
+.ingredients-container {
+  position: absolute;
+  top: 2rem;
+  left: 40%;
+}
+
+.icon {
+  margin-right: 0.5rem;
+}

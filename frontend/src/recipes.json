@@ -1,0 +1,20 @@
+[
+  {
+    "id": "1",
+    "name": "Cuba Libre",
+    "description": "Cuba Libre",
+    "ingredients": ["Coca-Cola", "vodka", "sugar"]
+  },
+  {
+    "id": "2",
+    "name": "Vodka with juice",
+    "description": "Vodka with juice",
+    "ingredients": ["vodka", "juice"]
+  },
+  {
+    "id": "3",
+    "name": "random cocktail",
+    "description": "random cocktail",
+    "ingredients": ["rum", "coca-cola"]
+  }
+]
