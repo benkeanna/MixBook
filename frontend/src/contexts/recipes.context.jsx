@@ -22,9 +22,21 @@ export const RecipesProvider = ({ children }) => {
         return data.json();
       })
       .then((recipesData) => {
-        console.log(recipesData);
         setInitRecipes(recipesData);
         setRecipes(recipesData);
+      })
+      .catch((err) => console.log(err));
+
+    fetch("https://6257bc2c0c918296a489cfe1.mockapi.io/api/ingredients")
+      .then((data) => {
+        if (!data.ok) {
+          throw new Error(data.statusText);
+        }
+        return data.json();
+      })
+      .then((ingredientsData) => {
+        console.log(ingredientsData);
+        setIngredients(ingredientsData);
       })
       .catch((err) => console.log(err));
   }, []);
