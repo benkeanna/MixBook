@@ -10,7 +10,6 @@ export const RecipesContext = createContext({
 });
 
 export const RecipesProvider = ({ children }) => {
-  console.log("now");
   const [recipes, setRecipes] = useState(recipesData);
   const [ingredients, setIngredients] = useState([]);
 

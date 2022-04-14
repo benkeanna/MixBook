@@ -24,7 +24,6 @@ export const FilterProvider = ({ children }) => {
   };
 
   const filterRecipes = () => {
-    console.log(filterIngredients);
     if (filterIngredients.length === 0) {
       setRecipes(recipesData);
     } else {
