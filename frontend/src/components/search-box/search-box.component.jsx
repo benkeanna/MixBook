@@ -13,7 +13,7 @@ const SearchBox = () => {
   };
   return (
     <div className="search-box">
-      <input type="text" placeholder="Search" onKeyDown={handleChange} />
+      <input type="text" placeholder="Search" onChange={handleChange} />
     </div>
   );
 };

@@ -19,6 +19,7 @@ const IngredientCard = ({ ingredient }) => {
   return (
     <div className="ingredient-card">
       <input
+        className="checkbox-input"
         type="checkbox"
         defaultChecked={isChecked}
         name={ingredient}
