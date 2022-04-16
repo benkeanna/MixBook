@@ -1,8 +1,8 @@
 import { createContext, useState, useEffect } from "react";
-import recipesData from "../recipes.json";
-import ingredientsData from "../ingredients.json";
+import getRecipes from "../services/getRecipes.service";
 
 export const RecipesContext = createContext({
+  initRecipes: [],
   recipes: [],
   setRecipes: () => {},
   ingredients: [],
@@ -10,18 +10,33 @@ export const RecipesContext = createContext({
 });
 
 export const RecipesProvider = ({ children }) => {
-  console.log("now");
-  const [recipes, setRecipes] = useState(recipesData);
-  const [ingredients, setIngredients] = useState([]);
+  const [initRecipes, setInitRecipes] = useState([]);
+  const [recipes, setRecipes] = useState();
+  const [ingredients, setIngredients] = useState();
 
   useEffect(() => {
-    setRecipes(recipesData);
-    setIngredients(ingredientsData);
+    getRecipes().then((data) => {
+      setInitRecipes(data);
+      setRecipes(data);
+    });
+
+    fetch("https://6257bc2c0c918296a489cfe1.mockapi.io/api/ingredients")
+      .then((data) => {
+        if (!data.ok) {
+          throw new Error(data.statusText);
+        }
+        return data.json();
+      })
+      .then((ingredientsData) => {
+        setIngredients(ingredientsData);
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   return (
     <RecipesContext.Provider
       value={{
+        initRecipes,
         recipes,
         setRecipes,
         ingredients,

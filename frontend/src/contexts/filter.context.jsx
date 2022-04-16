@@ -24,14 +24,13 @@ export const FilterProvider = ({ children }) => {
   };
 
   const filterRecipes = () => {
-    console.log(filterIngredients);
     if (filterIngredients.length === 0) {
       setRecipes(recipesData);
     } else {
       const filteredRecipes = recipesData.filter((recipe) => {
         const recipeIngredients = recipe.ingredients;
         const isMatch = recipeIngredients.some((ingredient) =>
-          filterIngredients.includes(ingredient)
+          filterIngredients.includes(ingredient.toLowerCase())
         );
         return isMatch;
       });

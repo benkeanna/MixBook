@@ -4,12 +4,15 @@ import "./index.scss";
 import App from "./App";
 import { RecipesProvider } from "./contexts/recipes.context";
 import { FilterProvider } from "./contexts/filter.context";
+import { SearchProvider } from "./contexts/search.context";
 
 ReactDOM.render(
   <React.StrictMode>
     <RecipesProvider>
       <FilterProvider>
-        <App />
+        <SearchProvider>
+          <App />
+        </SearchProvider>
       </FilterProvider>
     </RecipesProvider>
   </React.StrictMode>,
