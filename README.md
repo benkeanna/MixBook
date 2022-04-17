@@ -12,7 +12,7 @@ https://trello.com/b/IcagYj44/bcaa-projekt
 
 - Install dependencies.
 
-`docker-compose run --no-deps app npm install`
+`docker-compose run --no-deps backend npm install`
 
 - Run it.
 
@@ -26,9 +26,10 @@ https://trello.com/b/IcagYj44/bcaa-projekt
 
 `docker-compose up --build --force-recreate`
 
+- Migrate it.
+  `docker-compose exec backend npx prisma migrate dev --name init --schema src/prisma/schema.prisma`
+  `docker-compose exec backend npx prisma generate --schema src/prisma/schema.prisma`
+
 - See it.
 
 `localhost:3001`
-
-- Migrate it.
-`docker-compose exec backend npx prisma migrate dev --name init --schema src/prisma/schema.prisma`
