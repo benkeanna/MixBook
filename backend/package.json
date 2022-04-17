@@ -6,7 +6,8 @@
     "start": "node bin/www"
   },
   "prisma": {
-    "schema": "src/prisma/schema.prisma"
+    "schema": "src/prisma/schema.prisma",
+    "seed": "node src/prisma/seed.js"
   },
   "dependencies": {
     "@prisma/client": "^3.12.0",

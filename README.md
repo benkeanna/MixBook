@@ -26,9 +26,10 @@ https://trello.com/b/IcagYj44/bcaa-projekt
 
 `docker-compose up --build --force-recreate`
 
-- Migrate it.
+- Prepare db.
   `docker-compose exec backend npx prisma migrate dev --name init --schema src/prisma/schema.prisma`
   `docker-compose exec backend npx prisma generate --schema src/prisma/schema.prisma`
+  `docker-compose exec backend npx prisma db seed`
 
 - See it.
 
