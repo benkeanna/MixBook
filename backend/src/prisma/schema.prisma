@@ -1,0 +1,30 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Ingredient {
+  id               Int                @id @default(autoincrement())
+  name             String             @db.VarChar(255)
+  description      String             @db.VarChar(255)
+  unit             String             @db.VarChar(255)
+  RecipeIngredient RecipeIngredient[]
+}
+
+model Recipe {
+  id                 Int                @id @default(autoincrement())
+  name               String             @db.VarChar(255)
+  description        String             @db.VarChar(255)
+  preparation_length String             @db.VarChar(255)
+  final_amount       Int
+  RecipeIngredient   RecipeIngredient[]
+}
+
+model RecipeIngredient {
+  id           Int        @id @default(autoincrement())
+  recipe       Recipe     @relation(fields: [recipeId], references: [id])
+  recipeId     Int
+  ingredient   Ingredient @relation(fields: [ingredientId], references: [id])
+  ingredientId Int
+  amount       Int
+}

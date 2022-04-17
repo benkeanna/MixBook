@@ -29,3 +29,6 @@ https://trello.com/b/IcagYj44/bcaa-projekt
 - See it.
 
 `localhost:3001`
+
+- Migrate it.
+`docker-compose exec backend npx prisma migrate dev --name init --schema src/prisma/schema.prisma`

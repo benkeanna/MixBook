@@ -10,6 +10,8 @@ services:
       - "9229:9229"
     volumes:
       - "${PWD}/backend:/usr/src/app"
+    environment:
+      DATABASE_URL: "postgresql://username:password@postgres:5432/mixbook_db?schema=public"
 
   frontend:
     build:
@@ -22,7 +24,11 @@ services:
   postgres:
     image: postgres:11.2-alpine
     environment:
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: username
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: mixbook_db
+    ports:
+      - "54320:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
 
