@@ -25,10 +25,11 @@ model Recipe {
 }
 
 model RecipeIngredient {
-  id           Int        @id @default(autoincrement())
   recipe       Recipe     @relation(fields: [recipeId], references: [id])
   recipeId     Int
   ingredient   Ingredient @relation(fields: [ingredientId], references: [id])
   ingredientId Int
   amount       Int
+
+  @@id([recipeId, ingredientId])
 }

@@ -1,7 +1,8 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-const queries = require("../prisma/queries");
+const queries = require("../prisma/ingredients");
+const {DeleteIngredientError} = require("../errors");
 
 /* GET ingredients listing. */
 router.get('/', async function (req, res, next) {
@@ -10,14 +11,27 @@ router.get('/', async function (req, res, next) {
 });
 
 /* POST new ingredient. */
-/* GET zmenit na POST a dat pryc "create" */
-router.get('/create', async function (req, res, next) {
-    name = "ingredient name"
-    let description = "ingredient description";
-    let unit = "g";
-
-    const result = await queries.createIngredient(name, description, unit);
+router.post('/', async function (req, res, next) {
+    const result = await queries.createIngredient(req.name, req.description, req.unit);
     res.json(result)
 });
+
+/* DELETE ingredient. */
+router.delete('/', async function (req, res, next) {
+    try {
+        await queries.deleteIngredient(req.id);
+        res.json("Ingredient deleted.")
+    }
+    catch (e) {
+        if (e instanceof DeleteIngredientError)  {
+            res.status(403)
+            res.send(e.message)
+        } else {
+            res.status(500)
+            res.send("Error in delete ingredient.")
+        }
+    }
+});
+
 
 module.exports = router;
