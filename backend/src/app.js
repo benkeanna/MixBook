@@ -1,13 +1,13 @@
-var createError = require("http-errors");
-var express = require("express");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
-var apiRouter = require("./routes");
-var recipesRoutes = require("./routes/recipes");
-var ingredientsRoutes = require("./routes/ingredients");
-var cors = require('cors')
-var app = express()
+const createError = require("http-errors");
+const express = require("express");
+const path = require("path");
+const cookieParser = require("cookie-parser");
+const logger = require("morgan");
+const apiRouter = require("./routes");
+const recipesRoutes = require("./routes/recipes");
+const ingredientsRoutes = require("./routes/ingredients");
+const cors = require('cors')
+const app = express()
 
 app.use(cors())
 

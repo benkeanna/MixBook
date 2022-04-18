@@ -1,9 +1,12 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+
+const queries = require("../prisma/recipes");
 
 /* GET recipes listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+router.get('/', async function (req, res, next) {
+  const result = await queries.getRecipes();
+  res.json(result)
 });
 
 module.exports = router;
