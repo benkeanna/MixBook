@@ -1,13 +1,15 @@
-$background-color-body: #ffeead;
+@mixin bg-gradient($color1, $color2) {
+  background: $color1;
+  background: linear-gradient(to right, $color1, $color2);
+}
 body {
   margin: 0;
-  padding: 0.3rem 2rem;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: $background-color-body;
+  @include bg-gradient(#fab6a2, #ffccbd);
 }
 
 code {
