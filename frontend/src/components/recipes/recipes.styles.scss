@@ -1,17 +1,11 @@
-$background-color-recipes: #ffcc5c;
-
 .recipes-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  padding: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 1rem;
   align-items: center;
   margin-top: 2rem;
   width: 80vw;
   margin: 0 auto;
   height: 70vh;
-  background-color: #96ceb4;
-  background: $background-color-recipes;
   border-radius: 20px;
-  gap: 0.5rem;
 }

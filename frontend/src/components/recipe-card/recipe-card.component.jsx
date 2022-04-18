@@ -6,13 +6,14 @@ const RecipeCard = ({ recipe }) => {
   return (
     <div className="recipe-card-container">
       <h2>{name}</h2>
-      <span className="desc">{description}</span>
+
       <div className="ingredients-container">
         <AiFillTag className="icon" />
         {ingredients.map((ingredient, index) => (
-          <span key={index}>{ingredient}, </span>
+          <span key={index}>{ingredient} </span>
         ))}
       </div>
+      <span className="desc">{description}</span>
     </div>
   );
 };

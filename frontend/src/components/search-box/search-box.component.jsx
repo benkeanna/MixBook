@@ -13,7 +13,11 @@ const SearchBox = () => {
   };
   return (
     <div className="search-box">
-      <input type="text" placeholder="Search" onChange={handleChange} />
+      <input
+        type="text"
+        placeholder="Search a recipe"
+        onChange={handleChange}
+      />
     </div>
   );
 };

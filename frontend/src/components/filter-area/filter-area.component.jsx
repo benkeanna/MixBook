@@ -7,7 +7,7 @@ import { RecipesContext } from "../../contexts/recipes.context";
 const FilterArea = () => {
   const { ingredients } = useContext(RecipesContext);
   return (
-    <div className="filter-area-component">
+    <div className="filter-area-container">
       {ingredients ? (
         ingredients.map((ingredient) => (
           <IngredientCard key={ingredient.id} ingredient={ingredient.name} />

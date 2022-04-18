@@ -1,4 +1,4 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useState } from "react";
 import { RecipesContext } from "./recipes.context";
 import recipesData from "../recipes.json";
 
@@ -8,9 +8,12 @@ export const FilterContext = createContext({
   addIngredient: () => {},
   removeIngredient: () => {},
   resetFilter: () => {},
+  showFilter: false,
+  setShowFilter: () => {},
 });
 
 export const FilterProvider = ({ children }) => {
+  const [showFilter, setShowFilter] = useState(false);
   const { setRecipes } = useContext(RecipesContext);
 
   const addIngredient = (ingredient) => {
@@ -43,6 +46,8 @@ export const FilterProvider = ({ children }) => {
       value={{
         addIngredient,
         removeIngredient,
+        showFilter,
+        setShowFilter,
       }}
     >
       {children}
