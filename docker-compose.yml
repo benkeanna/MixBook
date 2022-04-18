@@ -11,7 +11,7 @@ services:
     volumes:
       - "${PWD}/backend:/usr/src/app"
     environment:
-      DATABASE_URL: "postgresql://username:password@postgres:5432/mixbook_db?schema=public"
+      DATABASE_URL: "postgresql://username:password@postgres:5432/mixbook_db?schema=public&connect_timeout=300"
 
   frontend:
     build:
