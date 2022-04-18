@@ -1,19 +1,14 @@
-import { useContext } from "react";
+import { Routes, Route } from "react-router-dom";
 
-import Header from "./components/header/header.component";
-import Recipes from "./components/recipes/recipes.component";
-import FilterArea from "./components/filter-area/filter-area.component";
-
-import { FilterContext } from "./contexts/filter.context";
+import Home from "./pages/home";
 
 function App() {
-  const { showFilter } = useContext(FilterContext);
   return (
-    <div>
-      <Header />
-      {showFilter && <FilterArea />}
-      <Recipes />
-    </div>
+    <>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </>
   );
 }
 
