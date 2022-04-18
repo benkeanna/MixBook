@@ -4,6 +4,7 @@ const { PrismaClient } = require('@prisma/client')
 
 const prisma = new PrismaClient()
 
+
 async function createIngredient(name, description, unit) {
     return await prisma.ingredient.create({
         data: {
@@ -14,12 +15,23 @@ async function createIngredient(name, description, unit) {
     });
 }
 
+
 async function getIngredients() {
     return await prisma.ingredient.findMany();
 }
 
-async function updateIngredient() {
-    return null
+
+async function updateIngredient(id, name, description, unit) {
+    return await prisma.ingredient.update({
+        where: {
+            id: id,
+        },
+        data: {
+            name,
+            description,
+            unit
+        }
+    })
 }
 
 
