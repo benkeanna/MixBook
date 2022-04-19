@@ -1,0 +1,20 @@
+.filter-area-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  animation: fadeIn 0.5s ease-in;
+  position: absolute;
+  right: 7rem;
+}
+
+@keyframes fadeIn {
+  from {
+    transform: translateY(-30%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

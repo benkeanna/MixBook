@@ -1,34 +1,26 @@
-var createError = require("http-errors");
-var express = require("express");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
-var apiRouter = require("./routes");
-var cors = require('cors')
-var app = express()
+const createError = require("http-errors");
+const express = require("express");
+const path = require("path");
+const cookieParser = require("cookie-parser");
+const logger = require("morgan");
+const apiRouter = require("./routes");
+const recipesRoutes = require("./routes/recipes");
+const ingredientsRoutes = require("./routes/ingredients");
+const cors = require('cors')
+const app = express()
 
 app.use(cors())
-
-// view engine jsem zakomentoval, pointless, pouzivame react
-// view engine setup
-//app.set("views", path.join(__dirname, "views"));
-//app.set("view engine", "jade");
 
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-// express taha soubory z build slozky reactu, muzeme pak zmenit, pokud to pres dokerfile budeme kopirovat do public
 app.use(express.static(path.join(__dirname, "../../frontend/build")));
 
 // express static staci
 app.use("/api", apiRouter);
-
-// vyuziva view engine takze jsem taky vypnul, muzee resit pres react
-// catch 404 and forward to error handler
-//app.use(function (req, res, next) {
-//  next(createError(404));
-//});
+app.use("/recipes", recipesRoutes);
+app.use("/ingredients", ingredientsRoutes);
 
 // error handler
 app.use(function (err, req, res, next) {
