@@ -13,6 +13,7 @@ const Header = () => {
 
         <SearchBox />
         <Button type="add">Add recipe</Button>
+        <Button type="add">Manage ingredients</Button>
       </div>
     </div>
   );

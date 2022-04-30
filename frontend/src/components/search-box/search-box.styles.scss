@@ -11,6 +11,9 @@
       outline: none;
     }
   }
+  input::placeholder {
+    font-size: 0.8rem;
+  }
   input {
     text-indent: 10px;
   }
