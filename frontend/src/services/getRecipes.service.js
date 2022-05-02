@@ -1,5 +1,9 @@
 import { API_SERVER } from "../utils/server_url.util";
 
+/**
+ *
+ * @returns {Promise} Promise of the fetch request to the api of the recipes
+ */
 export default function getRecipes() {
   return fetch(`${API_SERVER}/recipes`)
     .then((res) => res.json())

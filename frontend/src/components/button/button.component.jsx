@@ -1,7 +1,7 @@
 import "./button.styles.scss";
 
-const Button = ({ type, children }) => {
-  return <div className={` button ${type} `}>{children}</div>;
+const Button = ({ type, children, clickHandler }) => {
+  return <button className={` button ${type} `}>{children}</button>;
 };
 
 export default Button;

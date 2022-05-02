@@ -1,7 +1,7 @@
 import { createContext, useContext, useState } from "react";
 import { RecipesContext } from "./recipes.context";
-import recipesData from "../recipes.json";
 
+// stack for filtering ingredients
 const filterIngredients = [];
 
 export const FilterContext = createContext({
@@ -14,28 +14,40 @@ export const FilterContext = createContext({
 
 export const FilterProvider = ({ children }) => {
   const [showFilter, setShowFilter] = useState(false);
-  const { setRecipes } = useContext(RecipesContext);
+  const { setRecipes, initRecipes } = useContext(RecipesContext);
 
+  /**
+   *
+   * @param {string} ingredient
+   * @description adds an ingredient to the filter stack and filters the recipes
+   */
   const addIngredient = (ingredient) => {
     filterIngredients.push(ingredient);
     filterRecipes();
   };
 
+  /**
+   *
+   * @param {string} ingredient
+   * @description removes an ingredient from the filter stack and filters the recipes
+   */
   const removeIngredient = (ingredient) => {
     filterIngredients.pop(ingredient);
     filterRecipes();
   };
 
+  /**
+   * @description filter the ingredients and set the recipes to the filtered recipes
+   */
   const filterRecipes = () => {
     if (filterIngredients.length === 0) {
-      setRecipes(recipesData);
+      setRecipes(initRecipes);
     } else {
-      const filteredRecipes = recipesData.filter((recipe) => {
+      const filteredRecipes = initRecipes.filter((recipe) => {
         const recipeIngredients = recipe.ingredients;
-        const isMatch = recipeIngredients.some((ingredient) =>
+        return recipeIngredients.some((ingredient) =>
           filterIngredients.includes(ingredient.toLowerCase())
         );
-        return isMatch;
       });
       setRecipes(filteredRecipes);
     }
