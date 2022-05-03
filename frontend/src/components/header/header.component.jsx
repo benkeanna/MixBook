@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Button from "../button/button.component";
 import SearchBox from "../search-box/search-box.component";
 import FilterAreaButton from "../filter-area-button/filter-area-button.component";
+import AddIngredient from "../add-ingredient/add-ingredient.component";
 
 import "./header.styles.scss";
 

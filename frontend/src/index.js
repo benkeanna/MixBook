@@ -5,6 +5,7 @@ import App from "./App";
 import { RecipesProvider } from "./contexts/recipes.context";
 import { FilterProvider } from "./contexts/filter.context";
 import { SearchProvider } from "./contexts/search.context";
+import { DialogsProvider } from "./contexts/dialogs.contexts";
 import { BrowserRouter as Router } from "react-router-dom";
 
 const root = ReactDOMClient.createRoot(document.getElementById("root"));
@@ -15,7 +16,9 @@ root.render(
       <RecipesProvider>
         <FilterProvider>
           <SearchProvider>
-            <App />
+            <DialogsProvider>
+              <App />
+            </DialogsProvider>
           </SearchProvider>
         </FilterProvider>
       </RecipesProvider>
