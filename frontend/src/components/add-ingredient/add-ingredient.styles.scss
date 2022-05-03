@@ -16,3 +16,9 @@
   right: 1rem;
   cursor: pointer;
 }
+
+.add-ingredient-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
