@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import ReactDOMClient from "react-dom/client";
 import "./index.scss";
 import App from "./App";
 import { RecipesProvider } from "./contexts/recipes.context";
@@ -7,7 +7,9 @@ import { FilterProvider } from "./contexts/filter.context";
 import { SearchProvider } from "./contexts/search.context";
 import { BrowserRouter as Router } from "react-router-dom";
 
-ReactDOM.render(
+const root = ReactDOMClient.createRoot(document.getElementById("root"));
+
+root.render(
   <React.StrictMode>
     <Router>
       <RecipesProvider>
@@ -18,6 +20,5 @@ ReactDOM.render(
         </FilterProvider>
       </RecipesProvider>
     </Router>
-  </React.StrictMode>,
-  document.getElementById("root")
+  </React.StrictMode>
 );
