@@ -1,11 +1,11 @@
 .filter-area-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   animation: fadeIn 0.5s ease-in;
   position: absolute;
   right: 7rem;
+  height: 5vh;
+  overflow: scroll;
 }
 
 @keyframes fadeIn {
