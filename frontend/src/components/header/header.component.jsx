@@ -24,6 +24,7 @@ const Header = ({ type }) => {
       {type === "ingredients" && (
         <div className="nav">
           <Link to="/">
+            <Button type="add">Add ingredient</Button>
             <Button type="add">Back to homepage</Button>
           </Link>
         </div>
