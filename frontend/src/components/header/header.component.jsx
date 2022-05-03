@@ -1,14 +1,18 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
 
 import Button from "../button/button.component";
 import SearchBox from "../search-box/search-box.component";
 import FilterAreaButton from "../filter-area-button/filter-area-button.component";
-import AddIngredient from "../add-ingredient/add-ingredient.component";
+
+import { DialogsContext } from "../../contexts/dialogs.contexts";
 
 import "./header.styles.scss";
 
 const Header = ({ type }) => {
+  const { setShowAddIngredientDialog, setShowAddRecipeDialog } =
+    useContext(DialogsContext);
   return (
     <div className="header-container">
       <h1 className="title">MixBook</h1>
@@ -24,8 +28,16 @@ const Header = ({ type }) => {
       )}
       {type === "ingredients" && (
         <div className="nav">
+          <Button
+            onClick={() => {
+              console.log("haf");
+              setShowAddIngredientDialog(true);
+            }}
+            type="add"
+          >
+            Add ingredient
+          </Button>
           <Link to="/">
-            <Button type="add">Add ingredient</Button>
             <Button type="add">Back to homepage</Button>
           </Link>
         </div>
