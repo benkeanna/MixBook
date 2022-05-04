@@ -19,7 +19,7 @@ const AddIngredient = () => {
 
   return (
     <div className="add-ingredient-container">
-      <h1>přidej novou ingredienci, soudruhu</h1>
+      <h2>Add a new ingredient</h2>
       <div onClick={() => setShowAddIngredientDialog(false)} className="close">
         &#10005;
       </div>
