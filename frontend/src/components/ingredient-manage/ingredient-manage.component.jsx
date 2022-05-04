@@ -1,6 +1,14 @@
+import { useContext } from "react";
+
+import { DialogsContext } from "../../contexts/dialogs.contexts";
+
+import EditIngredient from "../edit-ingredient/edit-ingredient.component";
+
 import "./ingredient-manage.styles.scss";
 
 const IngredientManage = ({ ingredient }) => {
+  const { setShowEditIngredientDialog, showEditIngredientDialog } =
+    useContext(DialogsContext);
   const { name, description, unit } = ingredient;
   return (
     <div className="ingredient-manage-container">
@@ -8,7 +16,13 @@ const IngredientManage = ({ ingredient }) => {
       <span>{description}</span>
       <span>{unit}</span>
       <span className="edit"> &#x270E;</span>
-      <span className="delete">&#10005;</span>
+      <span
+        onClick={() => setShowEditIngredientDialog(true)}
+        className="delete"
+      >
+        &#10005;
+      </span>
+      {showEditIngredientDialog && <EditIngredient ingredient={ingredient} />}
     </div>
   );
 };

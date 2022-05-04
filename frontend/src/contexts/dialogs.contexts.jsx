@@ -5,11 +5,15 @@ export const DialogsContext = createContext({
   setShowAddRecipeDialog: () => {},
   showAddIngredientDialog: false,
   setShowAddIngredientDialog: () => {},
+  showEditIngredientDialog: false,
+  setShowEditIngredientDialog: () => {},
 });
 
 export const DialogsProvider = ({ children }) => {
   const [showAddRecipeDialog, setShowAddRecipeDialog] = useState(false);
   const [showAddIngredientDialog, setShowAddIngredientDialog] = useState(false);
+  const [showEditIngredientDialog, setShowEditIngredientDialog] =
+    useState(false);
   return (
     <DialogsContext.Provider
       value={{
@@ -17,6 +21,8 @@ export const DialogsProvider = ({ children }) => {
         setShowAddRecipeDialog,
         showAddIngredientDialog,
         setShowAddIngredientDialog,
+        showEditIngredientDialog,
+        setShowEditIngredientDialog,
       }}
     >
       {children}
