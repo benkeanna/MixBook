@@ -10,11 +10,21 @@ const AddIngredient = () => {
     description: "",
     unit: "",
   });
+  const [disabled, setDisabled] = useState(true);
   const { setShowAddIngredientDialog } = useContext(DialogsContext);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    if (newIngredient.name && newIngredient.description && newIngredient.unit) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
     setNewIngredient({ ...newIngredient, [name]: value });
+  };
+
+  const handleClick = () => {
+    setShowAddIngredientDialog(false);
   };
 
   return (
@@ -48,6 +58,9 @@ const AddIngredient = () => {
           placeholder="unit"
           onChange={handleChange}
         />
+        <button disabled={disabled} onClick={handleClick}>
+          Add
+        </button>
       </div>
     </div>
   );
