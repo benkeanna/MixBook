@@ -2,6 +2,8 @@ import { useContext, useState } from "react";
 
 import { DialogsContext } from "../../contexts/dialogs.contexts";
 
+import postIngredient from "../../services/postIngredient.service";
+
 import "./add-ingredient.styles.scss";
 
 const AddIngredient = () => {
@@ -24,6 +26,7 @@ const AddIngredient = () => {
   };
 
   const handleClick = () => {
+    postIngredient(newIngredient);
     setShowAddIngredientDialog(false);
   };
 
