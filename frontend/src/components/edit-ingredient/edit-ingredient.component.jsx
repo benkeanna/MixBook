@@ -1,8 +1,12 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 
-const EditIngredient = ({ ingredient }) => {
-  const [editIngredient, setEditIngredient] = useState(ingredient);
-  const [disabled, setDisabled] = useState(true);
+import { DialogsContext } from "../../contexts/dialogs.contexts";
+
+import "./edit-ingredient.styles.scss";
+
+const EditIngredient = () => {
+  const { editIngredientObj } = useContext(DialogsContext);
+  const [editIngredient, setEditIngredient] = useState(editIngredientObj);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -13,7 +17,7 @@ const EditIngredient = ({ ingredient }) => {
     console.log("hello");
   };
   return (
-    <div>
+    <div className="edit-ingredient-container">
       <h2>Edit ingredient</h2>
       <div className="add-ingredient-form">
         <label htmlFor="name">Name</label>
@@ -40,9 +44,7 @@ const EditIngredient = ({ ingredient }) => {
           placeholder="unit"
           onChange={handleChange}
         />
-        <button disabled={disabled} onClick={handleClick}>
-          Add
-        </button>
+        <button onClick={handleClick}>Edit</button>
       </div>
     </div>
   );

@@ -6,12 +6,14 @@ import { DialogsContext } from "../../contexts/dialogs.contexts";
 
 import IngredientManage from "../ingredient-manage/ingredient-manage.component";
 import AddIngredient from "../add-ingredient/add-ingredient.component";
+import EditIngredient from "../edit-ingredient/edit-ingredient.component";
 
 import "./ingredients-manage.styles.scss";
 
 const IngredientsManage = () => {
   const { ingredients } = useContext(RecipesContext);
-  const { showAddIngredientDialog } = useContext(DialogsContext);
+  const { showAddIngredientDialog, showEditIngredientDialog } =
+    useContext(DialogsContext);
   return (
     <>
       <div className="desc">
@@ -30,6 +32,7 @@ const IngredientsManage = () => {
           <BarLoader />
         )}
         {showAddIngredientDialog && <AddIngredient />}
+        {showEditIngredientDialog && <EditIngredient />}
       </div>
     </>
   );
