@@ -1,6 +1,8 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useContext } from "react";
 
 import getIngredients from "../services/getIngredients.service";
+
+import { ErrorsContext } from "./errors.context";
 
 export const IngredientsContext = createContext({
   ingredients: [],
@@ -9,15 +11,18 @@ export const IngredientsContext = createContext({
 
 export const IngredientsProvider = ({ children }) => {
   const [ingredients, setIngredients] = useState([]);
+
+  const { setGetErrors, getErrors } = useContext(ErrorsContext);
   useEffect(() => {
     getIngredients()
       .then((data) => {
         setIngredients(data);
       })
       .catch((err) => {
-        console.log("hello");
+        console.log("haf");
+        setGetErrors(...getErrors, err);
       });
-  }, []);
+  }, [setGetErrors, getErrors]);
   return (
     <IngredientsContext.Provider
       value={{

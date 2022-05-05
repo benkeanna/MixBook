@@ -1,20 +1,32 @@
 import { useState, useContext } from "react";
 
 import { DialogsContext } from "../../contexts/dialogs.contexts";
+import { ErrorsContext } from "../../contexts/errors.context";
+
+import putIngredient from "../../services/putIngredient.service.js";
 
 import "./edit-ingredient.styles.scss";
 
 const EditIngredient = () => {
-  const { editIngredientObj } = useContext(DialogsContext);
+  const { editIngredientObj, setShowEditIngredientDialog } =
+    useContext(DialogsContext);
+  const { setPutErrors } = useContext(ErrorsContext);
   const [editIngredient, setEditIngredient] = useState(editIngredientObj);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log("hello");
+    setEditIngredient({ ...editIngredient, [name]: value });
   };
 
   const handleClick = () => {
-    console.log("hello");
+    putIngredient(editIngredient)
+      .then(() => {
+        setShowEditIngredientDialog(false);
+      })
+      .catch((err) => {
+        setPutErrors(err.message);
+        setShowEditIngredientDialog(false);
+      });
   };
   return (
     <div className="edit-ingredient-container">

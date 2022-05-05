@@ -3,6 +3,7 @@ import BarLoader from "react-spinners/BarLoader";
 
 import { IngredientsContext } from "../../contexts/ingredients.context";
 import { DialogsContext } from "../../contexts/dialogs.contexts";
+import { ErrorsContext } from "../../contexts/errors.context";
 
 import IngredientManage from "../ingredient-manage/ingredient-manage.component";
 import AddIngredient from "../add-ingredient/add-ingredient.component";
@@ -14,6 +15,8 @@ const IngredientsManage = () => {
   const { ingredients } = useContext(IngredientsContext);
   const { showAddIngredientDialog, showEditIngredientDialog } =
     useContext(DialogsContext);
+  const { putErrors, getErrors } = useContext(ErrorsContext);
+
   return (
     <>
       <div className="desc">
@@ -33,6 +36,7 @@ const IngredientsManage = () => {
         )}
         {showAddIngredientDialog && <AddIngredient />}
         {showEditIngredientDialog && <EditIngredient />}
+        {getErrors && <p>teeeeeeeest</p>}
       </div>
     </>
   );

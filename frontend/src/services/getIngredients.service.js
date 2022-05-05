@@ -11,6 +11,7 @@ export default function getIngredients() {
     })
     .then((data) => data)
     .catch((err) => {
+      console.log("aaa");
       throw new Error(err);
     });
 }

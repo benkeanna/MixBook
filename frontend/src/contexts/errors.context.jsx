@@ -5,11 +5,14 @@ export const ErrorsContext = createContext({
   setGetErrors: () => {},
   postErrors: [],
   setPostErrors: () => {},
+  putErrors: [],
+  setPutErrors: () => {},
 });
 
 export const ErrorsProvider = ({ children }) => {
   const [getErrors, setGetErros] = useState([]);
   const [postErrors, setPostErrors] = useState([]);
+  const [putErrors, setPutErrors] = useState([]);
 
   return (
     <ErrorsContext.Provider
@@ -18,6 +21,8 @@ export const ErrorsProvider = ({ children }) => {
         setGetErros,
         postErrors,
         setPostErrors,
+        putErrors,
+        setPutErrors,
       }}
     >
       {children}
