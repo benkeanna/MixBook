@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import BarLoader from "react-spinners/BarLoader";
 
-import { RecipesContext } from "../../contexts/recipes.context";
+import { IngredientsContext } from "../../contexts/ingredients.context";
 import { DialogsContext } from "../../contexts/dialogs.contexts";
 
 import IngredientManage from "../ingredient-manage/ingredient-manage.component";
@@ -11,7 +11,7 @@ import EditIngredient from "../edit-ingredient/edit-ingredient.component";
 import "./ingredients-manage.styles.scss";
 
 const IngredientsManage = () => {
-  const { ingredients } = useContext(RecipesContext);
+  const { ingredients } = useContext(IngredientsContext);
   const { showAddIngredientDialog, showEditIngredientDialog } =
     useContext(DialogsContext);
   return (
