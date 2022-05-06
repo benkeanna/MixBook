@@ -13,13 +13,13 @@ services:
     environment:
       DATABASE_URL: "postgresql://username:password@postgres:5432/mixbook_db?schema=public&connect_timeout=300"
 
-  frontend:
-    build:
-      context: ./frontend/
-    volumes:
-      - ./frontend/:/usr/src/app
-    ports:
-      - "3000:3000"
+  # frontend:
+  #   build:
+  #     context: ./frontend/
+  #   volumes:
+  #     - ./frontend/:/usr/src/app
+  #   ports:
+  #     - "3000:3000"
 
   postgres:
     image: postgres:11.2-alpine
