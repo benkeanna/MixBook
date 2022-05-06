@@ -8,14 +8,20 @@ import { ErrorsContext } from "../../contexts/errors.context";
 import IngredientManage from "../ingredient-manage/ingredient-manage.component";
 import AddIngredient from "../add-ingredient/add-ingredient.component";
 import EditIngredient from "../edit-ingredient/edit-ingredient.component";
+import DeleteIngredient from "../delete-ingredient/delete-ingredient.component";
 
 import "./ingredients-manage.styles.scss";
 
 const IngredientsManage = () => {
   const { ingredients } = useContext(IngredientsContext);
-  const { showAddIngredientDialog, showEditIngredientDialog } =
-    useContext(DialogsContext);
+  const {
+    showAddIngredientDialog,
+    showEditIngredientDialog,
+    showDeleteIngredientDialog,
+  } = useContext(DialogsContext);
   const { putErrors, getErrors } = useContext(ErrorsContext);
+
+  console.log(getErrors);
 
   return (
     <>
@@ -36,7 +42,8 @@ const IngredientsManage = () => {
         )}
         {showAddIngredientDialog && <AddIngredient />}
         {showEditIngredientDialog && <EditIngredient />}
-        {getErrors && <p>teeeeeeeest</p>}
+        {showDeleteIngredientDialog && <DeleteIngredient />}
+        {getErrors.length > 0 && <p>Backend not available atm</p>}
       </div>
     </>
   );

@@ -5,7 +5,8 @@ import { DialogsContext } from "../../contexts/dialogs.contexts";
 import "./ingredient-manage.styles.scss";
 
 const IngredientManage = ({ ingredient }) => {
-  const { handleEditIngredientDialog } = useContext(DialogsContext);
+  const { handleEditIngredientDialog, handleDeleteIngredientDialog } =
+    useContext(DialogsContext);
   const { name, description, unit } = ingredient;
   return (
     <div className="ingredient-manage-container">
@@ -16,13 +17,19 @@ const IngredientManage = ({ ingredient }) => {
         className="edit"
         onClick={() => {
           handleEditIngredientDialog(ingredient);
-          console.log("hello");
         }}
       >
         {" "}
         &#x270E;
       </span>
-      <span className="delete">&#10005;</span>
+      <span
+        onClick={() => {
+          handleDeleteIngredientDialog(ingredient.id);
+        }}
+        className="delete"
+      >
+        &#10005;
+      </span>
     </div>
   );
 };

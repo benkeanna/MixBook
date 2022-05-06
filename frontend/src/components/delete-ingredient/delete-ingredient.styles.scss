@@ -1,0 +1,19 @@
+.delete-ingredient-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30vw;
+  padding: 1rem;
+  box-shadow: -1px 6px 18px 0px #00000067;
+  background-color: #ffffff;
+}
+
+.confirm-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 1rem;
+  align-items: center;
+  gap: 2rem;
+}
