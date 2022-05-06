@@ -1,12 +1,23 @@
 .delete-ingredient-container {
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 40%;
+  left: 35%;
+  transform: translate(-35%, -40%);
   width: 30vw;
   padding: 1rem;
   box-shadow: -1px 6px 18px 0px #00000067;
   background-color: #ffffff;
+  animation: scaleIn 0.2s ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
 }
 
 .confirm-container {
