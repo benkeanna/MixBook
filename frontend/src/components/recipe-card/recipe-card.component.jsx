@@ -10,7 +10,7 @@ const RecipeCard = ({ recipe }) => {
       <div className="ingredients-container">
         <AiFillTag className="icon" />
         {ingredients.map((ingredient, index) => (
-          <span key={index}>{ingredient} </span>
+          <span key={index}>{ingredient}, </span>
         ))}
       </div>
       <span className="desc">{description}</span>

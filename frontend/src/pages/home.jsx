@@ -13,7 +13,7 @@ const Home = () => {
   const { showFilter } = useContext(FilterContext);
   return (
     <div>
-      <Header />
+      <Header type="homepage" />
       {showFilter && <FilterArea />}
       <Recipes />
     </div>
