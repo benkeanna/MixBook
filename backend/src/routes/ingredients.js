@@ -14,14 +14,14 @@ router.get('/', async function (req, res, next) {
 
 /* POST new ingredient. */
 router.post('/', async function (req, res, next) {
-    const result = await queries.createIngredient(req.name, req.description, req.unit);
+    const result = await queries.createIngredient(req.body.name, req.body.description, req.body.unit);
     res.json(result)
 });
 
 
 /* PUT new ingredient. */
 router.put('/', async function (req, res, next) {
-    const result = await queries.updateIngredient(req.id, req.name, req.description, req.unit);
+    const result = await queries.updateIngredient(req.params.id, req.body.name, req.body.description, req.body.unit);
     res.json(result)
 });
 
@@ -29,7 +29,7 @@ router.put('/', async function (req, res, next) {
 /* DELETE ingredient. */
 router.delete('/', async function (req, res, next) {
     try {
-        await queries.deleteIngredient(req.id);
+        await queries.deleteIngredient(req.params.id);
         res.json("Ingredient deleted.")
     }
     catch (e) {

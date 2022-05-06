@@ -19,8 +19,8 @@ app.use(express.static(path.join(__dirname, "../public")));
 
 // express static staci
 app.use("/api", apiRouter);
-app.use("/recipes", recipesRoutes);
-app.use("/ingredients", ingredientsRoutes);
+app.use("/api/recipes", recipesRoutes);
+app.use("/api/ingredients", ingredientsRoutes);
 
 // error handler
 app.use(function (err, req, res, next) {
