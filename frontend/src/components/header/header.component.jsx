@@ -30,7 +30,6 @@ const Header = ({ type }) => {
         <div className="nav">
           <Button
             onClick={() => {
-              console.log("haf");
               setShowAddIngredientDialog(true);
             }}
             type="add"

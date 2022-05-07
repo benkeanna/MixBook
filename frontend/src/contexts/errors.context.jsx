@@ -11,7 +11,6 @@ export const ErrorsContext = createContext({
 
 export const ErrorsProvider = ({ children }) => {
   const getErrorHandler = (error) => {
-    console.log("aaaaaa");
     setGetErrors([...getErrors, error]);
   };
 
