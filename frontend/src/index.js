@@ -17,19 +17,19 @@ const root = ReactDOMClient.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Router>
-      <RecipesProvider>
-        <IngredientsProvider>
-          <FilterProvider>
-            <SearchProvider>
-              <DialogsProvider>
-                <ErrorsProvider>
+      <ErrorsProvider>
+        <RecipesProvider>
+          <IngredientsProvider>
+            <FilterProvider>
+              <SearchProvider>
+                <DialogsProvider>
                   <App />
-                </ErrorsProvider>
-              </DialogsProvider>
-            </SearchProvider>
-          </FilterProvider>
-        </IngredientsProvider>
-      </RecipesProvider>
+                </DialogsProvider>
+              </SearchProvider>
+            </FilterProvider>
+          </IngredientsProvider>
+        </RecipesProvider>
+      </ErrorsProvider>
     </Router>
   </React.StrictMode>
 );

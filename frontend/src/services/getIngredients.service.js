@@ -7,11 +7,14 @@ import { API_SERVER } from "../utils/server_url.util";
 export default function getIngredients() {
   return fetch(`http://localhost:3001/ingredients`)
     .then((res) => {
-      return res.json();
+      if (res.status === 200) {
+        return res.json();
+      } else {
+        throw new Error("could not fetch ingredients");
+      }
     })
     .then((data) => data)
     .catch((err) => {
-      console.log("aaa");
       throw new Error(err);
     });
 }
