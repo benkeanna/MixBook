@@ -1,5 +1,5 @@
 export default function deleteIngredient(id) {
-  return fetch(`http://localhost:3001/ingredients/${id}`, {
+  return fetch(`http://localhost:3001/api/ingredients/${id}`, {
     method: "DELETE",
   })
     .then((res) => res.json())
