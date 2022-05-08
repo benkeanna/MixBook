@@ -20,14 +20,14 @@ router.post('/', async function (req, res, next) {
 
 
 /* PUT new ingredient. */
-router.put('/', async function (req, res, next) {
+router.put('/:id', async function (req, res, next) {
     const result = await queries.updateIngredient(req.params.id, req.body.name, req.body.description, req.body.unit);
     res.json(result)
 });
 
 
 /* DELETE ingredient. */
-router.delete('/', async function (req, res, next) {
+router.delete('/:id', async function (req, res, next) {
     try {
         await queries.deleteIngredient(req.params.id);
         res.json("Ingredient deleted.")
