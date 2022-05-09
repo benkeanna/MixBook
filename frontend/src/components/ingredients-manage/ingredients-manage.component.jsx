@@ -19,10 +19,7 @@ const IngredientsManage = () => {
     showEditIngredientDialog,
     showDeleteIngredientDialog,
   } = useContext(DialogsContext);
-  const { putErrors, getErrors } = useContext(ErrorsContext);
-
-  console.log(getErrors);
-
+  const { getErrors } = useContext(ErrorsContext);
   return (
     <>
       <div className="desc">
@@ -33,13 +30,11 @@ const IngredientsManage = () => {
         <span>Delete</span>
       </div>
       <div className="ingredients-manage-container">
-        {ingredients ? (
-          ingredients.map((ingredient) => (
-            <IngredientManage key={ingredient.id} ingredient={ingredient} />
-          ))
-        ) : (
-          <BarLoader />
-        )}
+        {ingredients.length > 0
+          ? ingredients.map((ingredient) => (
+              <IngredientManage key={ingredient.id} ingredient={ingredient} />
+            ))
+          : getErrors.length === 0 && <BarLoader />}
         {showAddIngredientDialog && <AddIngredient />}
         {showEditIngredientDialog && <EditIngredient />}
         {showDeleteIngredientDialog && <DeleteIngredient />}

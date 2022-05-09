@@ -2,15 +2,19 @@ import { createContext, useState } from "react";
 
 export const ErrorsContext = createContext({
   getErrors: [],
-  setGetErrors: () => {},
   postErrors: [],
   setPostErrors: () => {},
   putErrors: [],
   setPutErrors: () => {},
+  getErrorHandler: () => {},
 });
 
 export const ErrorsProvider = ({ children }) => {
-  const [getErrors, setGetErros] = useState([]);
+  const getErrorHandler = (error) => {
+    setGetErrors([...getErrors, error]);
+  };
+
+  const [getErrors, setGetErrors] = useState([]);
   const [postErrors, setPostErrors] = useState([]);
   const [putErrors, setPutErrors] = useState([]);
 
@@ -18,11 +22,11 @@ export const ErrorsProvider = ({ children }) => {
     <ErrorsContext.Provider
       value={{
         getErrors,
-        setGetErros,
         postErrors,
         setPostErrors,
         putErrors,
         setPutErrors,
+        getErrorHandler,
       }}
     >
       {children}

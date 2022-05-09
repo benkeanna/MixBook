@@ -12,17 +12,16 @@ export const IngredientsContext = createContext({
 export const IngredientsProvider = ({ children }) => {
   const [ingredients, setIngredients] = useState([]);
 
-  const { setGetErrors, getErrors } = useContext(ErrorsContext);
+  const { getErrorHandler } = useContext(ErrorsContext);
   useEffect(() => {
     getIngredients()
       .then((data) => {
         setIngredients(data);
       })
       .catch((err) => {
-        console.log("haf");
-        setGetErrors(...getErrors, err);
+        getErrorHandler(err.message);
       });
-  }, [setGetErrors, getErrors]);
+  }, []);
   return (
     <IngredientsContext.Provider
       value={{
