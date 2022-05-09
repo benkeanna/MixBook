@@ -22,8 +22,21 @@ async function updateRecipe() {
 }
 
 
-async function deleteRecipe() {
-    return null
+async function deleteRecipe(id) {
+    try {
+        await prisma.recipe.delete({
+            where: {
+                id: id,
+            },
+        })
+        await prisma.recipeIngredient.updateMany({
+            where: {
+                recipeId: id,
+            },
+        })
+    } catch (e) {
+        throw e
+    }
 }
 
 
