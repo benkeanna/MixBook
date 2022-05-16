@@ -1,8 +1,7 @@
 import { useContext, useState } from "react";
 
 import { DialogsContext } from "../../contexts/dialogs.contexts";
-
-import postIngredient from "../../services/postIngredient.service";
+import { IngredientsContext } from "../../contexts/ingredients.context";
 
 import "./add-ingredient.styles.scss";
 
@@ -14,6 +13,7 @@ const AddIngredient = () => {
   });
   const [disabled, setDisabled] = useState(true);
   const { setShowAddIngredientDialog } = useContext(DialogsContext);
+  const { addIngredientHandler } = useContext(IngredientsContext);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,8 +26,7 @@ const AddIngredient = () => {
   };
 
   const handleClick = () => {
-    postIngredient(newIngredient);
-    setShowAddIngredientDialog(false);
+    addIngredientHandler(newIngredient);
   };
 
   return (

@@ -3,14 +3,14 @@ import { useContext } from "react";
 import Button from "../button/button.component";
 
 import { DialogsContext } from "../../contexts/dialogs.contexts";
-
-import deleteIngredient from "../../services/deleteIngredient.service";
+import { IngredientsContext } from "../../contexts/ingredients.context";
 
 import "./delete-ingredient.styles.scss";
 
 const DeleteIngredient = () => {
-  const { setShowDeleteIngredientDialog, deleteIngredientId } =
+  const { deleteIngredientId, setShowDeleteIngredientDialog } =
     useContext(DialogsContext);
+  const { deleteIngredientHandler } = useContext(IngredientsContext);
   return (
     <div className="delete-ingredient-container">
       Are you sure?
@@ -18,13 +18,7 @@ const DeleteIngredient = () => {
         <div>
           <Button
             onClick={() => {
-              deleteIngredient(deleteIngredientId)
-                .then(() => {
-                  setShowDeleteIngredientDialog(false);
-                })
-                .catch((err) => {
-                  console.log(err);
-                });
+              deleteIngredientHandler(deleteIngredientId);
             }}
             type="add"
           >
