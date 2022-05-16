@@ -8,5 +8,7 @@ export default function postIngredient(ingredient) {
   })
     .them((res) => res.json())
     .them((data) => data)
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      throw new Error(err);
+    });
 }
