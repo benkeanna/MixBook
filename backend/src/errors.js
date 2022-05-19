@@ -5,4 +5,11 @@ class DeleteIngredientError extends Error {
     }
 }
 
-module.exports = { DeleteIngredientError }
+class DeleteRecipeError extends Error {
+    constructor(message) {
+        super(message);
+        this.name = "DeleteRecipeError";
+    }
+}
+
+module.exports = { DeleteIngredientError, DeleteRecipeError }

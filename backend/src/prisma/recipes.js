@@ -1,4 +1,5 @@
-const { PrismaClient } = require('@prisma/client')
+const { PrismaClient } = require('@prisma/client');
+const { DeleteRecipeError } = require('../errors');
 
 const prisma = new PrismaClient()
 
@@ -35,7 +36,7 @@ async function deleteRecipe(id) {
             },
         })
     } catch (e) {
-        throw e
+        throw new DeleteRecipeError('Error in deleting of recipe.')
     }
 }
 
