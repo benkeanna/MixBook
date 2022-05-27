@@ -28,7 +28,7 @@ export const IngredientsProvider = ({ children }) => {
       .catch((err) => {
         getErrorHandler(err.message);
       });
-  }, [ingredients]);
+  }, []);
 
   const deleteIngredientHandler = (id) => {
     setShowDeleteIngredientDialog(false);
@@ -38,7 +38,9 @@ export const IngredientsProvider = ({ children }) => {
   const addIngredientHandler = (ingredient) => {
     setIngredients([...ingredients, ingredient]);
     setShowAddIngredientDialog(false);
-    postIngredient(ingredient).then(data => {console.log("ok");)
+    postIngredient(ingredient).then((data) => {
+      console.log("ok");
+    });
   };
   return (
     <IngredientsContext.Provider
