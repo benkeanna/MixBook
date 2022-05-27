@@ -38,7 +38,7 @@ export const IngredientsProvider = ({ children }) => {
   const addIngredientHandler = (ingredient) => {
     setIngredients([...ingredients, ingredient]);
     setShowAddIngredientDialog(false);
-    postIngredient(ingredient);
+    postIngredient(ingredient).then(data => {console.log("ok");)
   };
   return (
     <IngredientsContext.Provider
