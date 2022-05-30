@@ -10,6 +10,19 @@ router.get('/', async function (req, res, next) {
   res.json(result)
 });
 
+/* CREATE recipe. */
+router.post('/', async function (req, res, next) {
+  try {
+    const result = await queries.createRecipe(req.body);
+    res.json(result);
+  }
+  catch (e) {
+    res.status(500);
+    res.send("Error in create recipe.");
+  }
+});
+
+
 /* DELETE recipe. */
 router.delete('/:id', async function (req, res, next) {
   try {
@@ -17,13 +30,8 @@ router.delete('/:id', async function (req, res, next) {
       res.status(204)
   }
   catch (e) {
-      if (e instanceof DeleteIngredientError)  {
-          res.status(403)
-          res.send(e.message)
-      } else {
-          res.status(500)
-          res.send("Error in delete recipe.")
-      }
+    res.status(500);
+    res.send("Error in delete recipe.");
   }
 });
 

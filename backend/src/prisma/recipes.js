@@ -1,5 +1,6 @@
-const { PrismaClient } = require('@prisma/client');
+const Prisma = require("prisma");
 const { DeleteRecipeError } = require('../errors');
+const { PrismaClient } = require('@prisma/client');
 
 const prisma = new PrismaClient()
 
@@ -13,8 +14,25 @@ async function getRecipes() {
 }
 
 
-async function createRecipe() {
-    return null
+async function createRecipe(recipe) {
+    let createdRecipe = await prisma.recipe.create({
+        data: {
+            name: recipe.name,
+            description: recipe.description,
+            preparation_length: recipe.preparationLength,
+            final_amount: recipe.ingredients.length
+        },
+    });
+    for (let i = 0; i < recipe.ingredients.length; i++) {
+        await prisma.recipeIngredient.create({
+            data: {
+                recipeId: createdRecipe.id,
+                ingredientId: recipe.ingredients[i].id,
+                amount: recipe.ingredients[i].amount
+            },
+        });
+    }
+    return createdRecipe;
 }
 
 
@@ -30,7 +48,7 @@ async function deleteRecipe(id) {
                 id: id,
             },
         })
-        await prisma.recipeIngredient.updateMany({
+        await prisma.recipeIngredient.deleteMany({
             where: {
                 recipeId: id,
             },
