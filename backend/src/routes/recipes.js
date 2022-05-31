@@ -4,12 +4,12 @@ const router = express.Router();
 const queries = require("../prisma/recipes");
 
 /* GET recipes listing. */
-// todo
 router.get('/', async function (req, res, next) {
   try {
     const result = await queries.getRecipes();
     res.json(result)
   } catch (e) {
+    console.log(e);
     res.status(500);
     res.send("Error in get recipes.");
   }
@@ -21,6 +21,7 @@ router.post('/', async function (req, res, next) {
     const result = await queries.createRecipe(req.body);
     res.json(result);
   } catch (e) {
+    console.log(e);
     res.status(500);
     res.send("Error in create recipe.");
   }
@@ -29,7 +30,6 @@ router.post('/', async function (req, res, next) {
 
 /* DELETE recipe. */
 router.delete('/:id', async function (req, res, next) {
-  console.log(req.params.id);
   try {
     await queries.deleteRecipe(parseInt(req.params.id));
     res.status(204);
