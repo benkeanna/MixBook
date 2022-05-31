@@ -6,8 +6,13 @@ const queries = require("../prisma/recipes");
 /* GET recipes listing. */
 // todo
 router.get('/', async function (req, res, next) {
-  const result = await queries.getRecipes();
-  res.json(result)
+  try {
+    const result = await queries.getRecipes();
+    res.json(result)
+  } catch (e) {
+    res.status(500);
+    res.send("Error in get recipes.");
+  }
 });
 
 /* CREATE recipe. */

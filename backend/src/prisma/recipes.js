@@ -6,13 +6,38 @@ const prisma = new PrismaClient()
 
 
 async function getRecipes() {
-    return await prisma.recipe.findMany({
-        include: {
-            RecipeIngredient: true,
-        },
-    });
+    let recipes = await prisma.recipe.findMany();
+    // console.log("recipes:");
+    // console.log(recipes);
+    for (let i = 0; i < recipes.length; i++) {
+        let recipeIngredients = await prisma.recipeIngredient.findMany({
+            where: {
+                recipeId: recipes[i].id,
+            }
+        });
+        // console.log("recipeIngredients:");
+        // console.log(recipeIngredients);
+        let ingredientList = [];
+        let ing;
+        for (let j = 0; j < recipeIngredients.length; j++) {
+            ing = await prisma.ingredient.findUnique({
+                where: {
+                    id: recipeIngredients[j].ingredientId,
+                }
+            });
+            // console.log("ingredients:");
+            // console.log(ing);
+            ing.amount = recipeIngredients[j].amount;
+            ingredientList.push(ing);
+        }
+        // console.log("ingredientList:");
+        // console.log(ingredientList);
+        recipes[i].ingredients = ingredientList;
+    }
+    console.log("recipes:");
+    console.log(recipes);
+    return recipes;
 }
-
 
 async function createRecipe(recipe) {
     let createdRecipe = await prisma.recipe.create({
@@ -47,12 +72,12 @@ async function deleteRecipe(id) {
             where: {
                 recipeId: id,
             },
-        })
+        });
         await prisma.recipe.delete({
             where: {
                 id: id,
             },
-        })
+        });
     } catch (e) {
         throw e
     }
