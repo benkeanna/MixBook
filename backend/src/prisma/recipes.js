@@ -61,8 +61,55 @@ async function createRecipe(recipe) {
 }
 
 
-async function updateRecipe() {
-    return null
+async function updateRecipe(id, req) {
+    try {
+        await prisma.recipe.update({
+            where: {
+                id: id,
+            },
+            data: {
+                name: req.name,
+                description: req.description,
+                preparation_length: req.preparationLength,
+                final_amount: final_amount + req.addIngredients.length - req.deleteIngredients.length,
+            }
+        });
+        for (let i = 0; i < req.deleteIngredients.length; i++) {
+            await prisma.recipeIngredient.delete({
+                where: {
+                    recipeId: id,
+                    ingredientId: req.deleteIngredients[i].id,
+                },
+            });
+        }
+        for (let j = 0; i < req.addIngredients.length; j++) {
+            await prisma.recipeIngredient.create({
+                data: {
+                    recipeId: id,
+                    ingredientId: req.addIngredients[j].id,
+                    amount: req.addIngredients[j].amount,
+                },
+            });
+        }
+        for (let k = 0; i < req.modIngredients.length; k++) {
+            await prisma.recipeIngredient.update({
+                where: {
+                    recipeId: id,
+                    ingredientId: req.modIngredients[k].id,
+                },
+                data: {
+                    amount: req.modIngredients[k].amount,
+                },
+            });
+        }
+        return prisma.recipe.findUnique({
+            where: {
+                id: id,
+            },
+        });
+    } catch (e) {
+        throw e
+    }
 }
 
 

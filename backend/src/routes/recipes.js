@@ -41,4 +41,19 @@ router.delete('/:id', async function (req, res, next) {
   }
 });
 
+/* UPDATE recipe. */
+router.put("/:id", async function (req, res, next) {
+  try {
+    const result = await queries.updateRecipe(
+      parseInt(req.params.id),
+      req.body
+    );
+    res.json(result);
+  } catch (e) {
+    console.log(e);
+    res.status(500);
+    res.send("Error in update recipe.");
+  }
+});
+
 module.exports = router;
