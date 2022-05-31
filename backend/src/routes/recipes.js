@@ -15,8 +15,7 @@ router.post('/', async function (req, res, next) {
   try {
     const result = await queries.createRecipe(req.body);
     res.json(result);
-  }
-  catch (e) {
+  } catch (e) {
     res.status(500);
     res.send("Error in create recipe.");
   }
@@ -25,11 +24,13 @@ router.post('/', async function (req, res, next) {
 
 /* DELETE recipe. */
 router.delete('/:id', async function (req, res, next) {
+  console.log(req.params.id);
   try {
-      await queries.deleteRecipe(req.params.id);
-      res.status(204)
-  }
-  catch (e) {
+    await queries.deleteRecipe(parseInt(req.params.id));
+    res.status(204);
+    res.send("Recipe id " + req.params.id + " was deleted.")
+  } catch (e) {
+    console.log(e);
     res.status(500);
     res.send("Error in delete recipe.");
   }

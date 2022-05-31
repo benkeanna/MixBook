@@ -43,18 +43,18 @@ async function updateRecipe() {
 
 async function deleteRecipe(id) {
     try {
-        await prisma.recipe.delete({
-            where: {
-                id: id,
-            },
-        })
         await prisma.recipeIngredient.deleteMany({
             where: {
                 recipeId: id,
             },
         })
+        await prisma.recipe.delete({
+            where: {
+                id: id,
+            },
+        })
     } catch (e) {
-        throw new DeleteRecipeError('Error in deleting of recipe.')
+        throw e
     }
 }
 
