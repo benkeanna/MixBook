@@ -19,7 +19,7 @@ const IngredientsManage = () => {
     showEditIngredientDialog,
     showDeleteIngredientDialog,
   } = useContext(DialogsContext);
-  const { getErrors } = useContext(ErrorsContext);
+  const { error } = useContext(ErrorsContext);
   return (
     <>
       <div className="desc">
@@ -34,11 +34,11 @@ const IngredientsManage = () => {
           ? ingredients.map((ingredient) => (
               <IngredientManage key={ingredient.id} ingredient={ingredient} />
             ))
-          : getErrors.length === 0 && <BarLoader />}
+          : typeof error !== "undefined" && <BarLoader />}
         {showAddIngredientDialog && <AddIngredient />}
         {showEditIngredientDialog && <EditIngredient />}
         {showDeleteIngredientDialog && <DeleteIngredient />}
-        {getErrors.length > 0 && <p>Backend not available atm</p>}
+        {typeof error !== "undefined" && <p>Backend not available atm</p>}
       </div>
     </>
   );
