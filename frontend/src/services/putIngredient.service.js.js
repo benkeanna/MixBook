@@ -1,5 +1,5 @@
 export default function putIngredient(ingredient) {
-  return fetch(`http://localhost:3001/api/ingredients`, {
+  return fetch(`http://localhost:3001/api/ingredients/${ingredient.id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
