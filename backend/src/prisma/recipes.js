@@ -37,17 +37,33 @@ async function createRecipe(recipe) {
             preparation_length: recipe.preparationLength,
             final_amount: recipe.ingredients.length
         },
+        recipeIngredient: {
+            create: 
+                updateRecipeIngredient(createdRecipe, recipe)
+        },
     });
-    for (let i = 0; i < recipe.ingredients.length; i++) {
-        await prisma.recipeIngredient.create({
-            data: {
-                recipeId: createdRecipe.id,
-                ingredientId: recipe.ingredients[i].id,
-                amount: recipe.ingredients[i].amount
-            },
-        });
-    }
+    // for (let i = 0; i < recipe.ingredients.length; i++) {
+    //     await prisma.recipeIngredient.create({
+    //         data: {
+    //             recipeId: createdRecipe.id,
+    //             ingredientId: recipe.ingredients[i].id,
+    //             amount: recipe.ingredients[i].amount
+    //         },
+    //     });
+    // }
     return createdRecipe;
+}
+
+function updateRecipeIngredient(createdRecipe, recipe) {
+    let result = [];
+    for (let i = 0; i < recipe.ingredients.length; i++) {
+        let object;
+            object.recipeId = createdRecipe.id;
+            object.ingredientId = recipe.ingredients[i].id;
+            object.amount = recipe.ingredients[i].amount;
+            result.push(object);
+    }
+    return result;
 }
 
 
@@ -112,6 +128,7 @@ async function deleteRecipe(id) {
             },
         });
     } catch (e) {
+        console.log(e)
         throw e
     }
 }
