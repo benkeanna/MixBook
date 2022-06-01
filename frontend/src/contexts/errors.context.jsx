@@ -1,32 +1,24 @@
 import { createContext, useState } from "react";
 
 export const ErrorsContext = createContext({
-  getErrors: [],
-  postErrors: [],
-  setPostErrors: () => {},
-  putErrors: [],
-  setPutErrors: () => {},
-  getErrorHandler: () => {},
+  error: null,
+  setError: () => {},
+  errorHandler: () => {},
 });
 
 export const ErrorsProvider = ({ children }) => {
-  const getErrorHandler = (error) => {
-    setGetErrors([...getErrors, error]);
-  };
+  const [error, setError] = useState();
 
-  const [getErrors, setGetErrors] = useState([]);
-  const [postErrors, setPostErrors] = useState([]);
-  const [putErrors, setPutErrors] = useState([]);
+  const errorHandler = (msg) => {
+    setError(msg);
+  };
 
   return (
     <ErrorsContext.Provider
       value={{
-        getErrors,
-        postErrors,
-        setPostErrors,
-        putErrors,
-        setPutErrors,
-        getErrorHandler,
+        error,
+        errorHandler,
+        setError,
       }}
     >
       {children}
