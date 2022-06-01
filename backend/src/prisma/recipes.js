@@ -53,7 +53,7 @@ async function createRecipe(recipe) {
 
 async function updateRecipe(id, req) {
     try {
-        await prisma.recipe.update({
+        let result = await prisma.recipe.update({
             where: {
                 id: id,
             },
@@ -92,11 +92,7 @@ async function updateRecipe(id, req) {
                 },
             });
         }
-        return prisma.recipe.findUnique({
-            where: {
-                id: id,
-            },
-        });
+        return result;
     } catch (e) {
         throw e
     }
