@@ -37,20 +37,16 @@ async function createRecipe(recipe) {
             preparation_length: recipe.preparationLength,
             final_amount: recipe.ingredients.length
         },
-        recipeIngredient: {
-            create: 
-                updateRecipeIngredient(createdRecipe, recipe)
-        },
     });
-    // for (let i = 0; i < recipe.ingredients.length; i++) {
-    //     await prisma.recipeIngredient.create({
-    //         data: {
-    //             recipeId: createdRecipe.id,
-    //             ingredientId: recipe.ingredients[i].id,
-    //             amount: recipe.ingredients[i].amount
-    //         },
-    //     });
-    // }
+    for (let i = 0; i < recipe.ingredients.length; i++) {
+        await prisma.recipeIngredient.create({
+            data: {
+                recipeId: createdRecipe.id,
+                ingredientId: recipe.ingredients[i].id,
+                amount: recipe.ingredients[i].amount
+            },
+        });
+    }
     return createdRecipe;
 }
 
