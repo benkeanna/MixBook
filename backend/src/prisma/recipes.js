@@ -124,7 +124,6 @@ async function deleteRecipe(id) {
             },
         });
     } catch (e) {
-        console.log(e)
         throw e
     }
 }
