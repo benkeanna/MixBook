@@ -35,7 +35,7 @@ router.put("/:id", async function (req, res, next) {
 router.delete("/:id", async function (req, res, next) {
   console.log(req.params.id);
   try {
-    await queries.deleteIngredient(req.params.id);
+    await queries.deleteIngredient(parseInt(req.params.id));
     res.status(204);
   } catch (e) {
     if (e instanceof DeleteIngredientError) {

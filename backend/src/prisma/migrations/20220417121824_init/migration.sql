@@ -1,4 +1,5 @@
 -- CreateTable
+DROP TABLE IF EXISTS "Ingredient";
 CREATE TABLE "Ingredient" (
     "id" SERIAL NOT NULL,
     "name" VARCHAR(255) NOT NULL,
@@ -9,6 +10,7 @@ CREATE TABLE "Ingredient" (
 );
 
 -- CreateTable
+DROP TABLE IF EXISTS "Recipe";
 CREATE TABLE "Recipe" (
     "id" SERIAL NOT NULL,
     "name" VARCHAR(255) NOT NULL,
@@ -20,6 +22,7 @@ CREATE TABLE "Recipe" (
 );
 
 -- CreateTable
+DROP TABLE IF EXISTS "RecipeIngredient";
 CREATE TABLE "RecipeIngredient" (
     "id" SERIAL NOT NULL,
     "recipeId" INTEGER NOT NULL,
