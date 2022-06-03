@@ -7,7 +7,10 @@ export default function putIngredient(ingredient) {
     body: JSON.stringify(ingredient),
   })
     .then((res) => res.json())
-    .then((data) => data)
+    .then((data) => {
+      console.log(data);
+      return data;
+    })
     .catch((err) => {
       throw new Error(err);
     });
