@@ -1,5 +1,7 @@
 import { createContext, useState, useEffect } from "react";
+
 import getRecipes from "../services/getRecipes.service";
+import deleteRecipe from "../services/deleteRecipe.service";
 
 export const RecipesContext = createContext({
   initRecipes: [],
@@ -10,6 +12,12 @@ export const RecipesContext = createContext({
 export const RecipesProvider = ({ children }) => {
   const [initRecipes, setInitRecipes] = useState([]);
   const [recipes, setRecipes] = useState();
+  const [render, setRender] = useState(false);
+
+  const deleteRecipeHandler = (id) => {
+    deleteRecipe(id);
+    setRender(!render);
+  };
 
   useEffect(() => {
     getRecipes()
@@ -18,9 +26,9 @@ export const RecipesProvider = ({ children }) => {
         setRecipes(data);
       })
       .catch((err) => {
-        console.log("hello");
+        throw new Error(err);
       });
-  }, []);
+  }, [render]);
 
   return (
     <RecipesContext.Provider
