@@ -36,9 +36,8 @@ export const IngredientsProvider = ({ children }) => {
 
   const deleteIngredientHandler = (id) => {
     setShowDeleteIngredientDialog(false);
-    deleteIngredient(id).then(() => {
-      setRender(!render);
-    });
+    deleteIngredient(id);
+    setRender(!render);
   };
 
   const addIngredientHandler = (ingredient) => {
