@@ -1,46 +1,38 @@
 import { useState, useContext } from "react";
 
-import Button from "../button/button.component";
 import IngredientsBox from "../ingredients-box/ingredients-box.component";
+import Button from "../button/button.component";
 
-import { IngredientsContext } from "../../contexts/ingredients.context";
 import { RecipesContext } from "../../contexts/recipes.context";
-import { DialogsContext } from "../../contexts/dialogs.contexts";
+import { IngredientsContext } from "../../contexts/ingredients.context";
 
-import "./add-recipe.styles.scss";
+import "./edit-recipe.styles.scss";
 
-const AddRecipe = () => {
-  const [ingredientsToAdd, setIngredientsToAdd] = useState([]);
-  const [recipe, setRecipe] = useState({
-    name: "",
-    description: "",
-    preparationLength: "",
-    ingredients: [],
-  });
+const EditRecipe = ({ recipe, showEdit, setShowEdit }) => {
   const { ingredients } = useContext(IngredientsContext);
-  const { addRecipeHandler } = useContext(RecipesContext);
-  const { setShowAddRecipeDialog } = useContext(DialogsContext);
+  const { editRecipeHandler } = useContext(RecipesContext);
+  const [editRecipe, setEditRecipe] = useState(recipe);
+  const [ingredientsToAdd, setIngredientsToAdd] = useState(recipe.ingredients);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setRecipe({ ...recipe, [name]: value });
+    setEditRecipe({ ...recipe, [name]: value });
   };
   const handleClick = (e) => {
     const finalRecipe = { ...recipe, ingredients: ingredientsToAdd };
-    addRecipeHandler(finalRecipe);
-    setShowAddRecipeDialog(false);
+    editRecipeHandler(finalRecipe);
+    setShowEdit(!showEdit);
   };
-
   return (
-    <div className="add-recipe-container">
-      <h1>Add Recipe</h1>
+    <div className="edit-recipe-container">
+      Edit recipe
       <div className="add-recipe-input-container">
         <label htmlFor="name">Name</label>
         <input
           type="text"
           name="name"
           id="name"
-          value={recipe.name}
+          value={editRecipe.name}
           onChange={handleChange}
         />
         <label htmlFor="description">Description</label>
@@ -48,7 +40,7 @@ const AddRecipe = () => {
           type="text"
           name="description"
           id="description"
-          value={recipe.description}
+          value={editRecipe.description}
           onChange={handleChange}
         />
         <label htmlFor="preparationLength">Preparation Length</label>
@@ -56,7 +48,7 @@ const AddRecipe = () => {
           type="text"
           id="preparationLength"
           name="preparationLength"
-          value={recipe.preparationLength}
+          value={editRecipe.preparationLength}
           onChange={handleChange}
         />
         <IngredientsBox
@@ -72,4 +64,4 @@ const AddRecipe = () => {
   );
 };
 
-export default AddRecipe;
+export default EditRecipe;

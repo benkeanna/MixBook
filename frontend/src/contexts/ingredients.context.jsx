@@ -3,7 +3,7 @@ import { createContext, useState, useEffect, useContext } from "react";
 import getIngredients from "../services/getIngredients.service";
 import deleteIngredient from "../services/deleteIngredient.service";
 import postIngredient from "../services/postIngredient.service";
-import putIngredient from "../services/putIngredient.service.js";
+import putIngredient from "../services/putIngredient.service";
 
 import { ErrorsContext } from "./errors.context";
 import { DialogsContext } from "./dialogs.contexts";

@@ -3,6 +3,7 @@ import { createContext, useState, useEffect } from "react";
 import getRecipes from "../services/getRecipes.service";
 import deleteRecipe from "../services/deleteRecipe.service";
 import postRecipe from "../services/postRecipe.service";
+import putRecipe from "../services/putRecipe.service";
 
 export const RecipesContext = createContext({
   initRecipes: [],
@@ -10,6 +11,7 @@ export const RecipesContext = createContext({
   setRecipes: () => {},
   deleteRecipeHandler: () => {},
   addEventListener: () => {},
+  editRecipeHandler: () => {},
 });
 
 export const RecipesProvider = ({ children }) => {
@@ -18,13 +20,17 @@ export const RecipesProvider = ({ children }) => {
   const [render, setRender] = useState(false);
 
   const deleteRecipeHandler = (id) => {
-    deleteRecipe(id);
-    setRender(!render);
+    deleteRecipe(id).then(() => {
+      setRender(!render);
+    });
   };
 
   const addRecipeHandler = (recipe) => {
-    postRecipe(recipe);
-    setRender(!render);
+    postRecipe(recipe).then(setRender(!render));
+  };
+
+  const editRecipeHandler = (recipe) => {
+    putRecipe(recipe).then(setRender(!render));
   };
 
   useEffect(() => {
@@ -46,6 +52,7 @@ export const RecipesProvider = ({ children }) => {
         setRecipes,
         deleteRecipeHandler,
         addRecipeHandler,
+        editRecipeHandler,
       }}
     >
       {children}

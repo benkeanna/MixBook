@@ -15,6 +15,7 @@ const DeleteRecipe = ({ id, setShowDelete, showDelete }) => {
         <Button
           onClick={() => {
             deleteRecipeHandler(id);
+            setShowDelete(!showDelete);
           }}
           type="remove"
         >

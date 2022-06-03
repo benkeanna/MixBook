@@ -1,8 +1,9 @@
 import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 import Button from "../button/button.component";
 import DeleteRecipe from "../delete-recipe/delete-recipe.component";
+import EditRecipe from "../edit-recipe/edit-recipe.component";
 
 import { RecipesContext } from "../../contexts/recipes.context";
 
@@ -24,6 +25,10 @@ const Detail = () => {
   }, [intId, initRecipes]);
   return (
     <div>
+      <Link to="/">
+        <Button type="add">Back to homepage</Button>
+      </Link>
+
       <Button
         type="add"
         onClick={() => {
@@ -32,6 +37,14 @@ const Detail = () => {
       >
         Remove recipe
       </Button>
+      <Button
+        type="add"
+        onClick={() => {
+          setShowEdit(true);
+        }}
+      >
+        Edit Recipe
+      </Button>
       <h1>{recipe?.name}</h1>
 
       {showDelete && (
@@ -39,6 +52,13 @@ const Detail = () => {
           id={intId}
           showDelete={showDelete}
           setShowDelete={setShowDelete}
+        />
+      )}
+      {showEdit && (
+        <EditRecipe
+          recipe={recipe}
+          showEdit={showEdit}
+          setShowEdit={setShowEdit}
         />
       )}
     </div>
