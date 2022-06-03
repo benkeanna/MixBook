@@ -1,7 +1,6 @@
 import { API_SERVER } from "../utils/server_url.util";
 
 export default function putRecipe(recipe) {
-  console.log("here");
   return fetch(`${API_SERVER}/api/recipes/${recipe.id}`, {
     method: "PUT",
     headers: {

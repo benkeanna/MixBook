@@ -1,5 +1,5 @@
 export default function postIngredient(ingredient) {
-  fetch("http://localhost:3001/api/ingredients", {
+  return fetch("http://localhost:3001/api/ingredients", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

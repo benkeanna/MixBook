@@ -8,7 +8,6 @@ export default function putIngredient(ingredient) {
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log(data);
       return data;
     })
     .catch((err) => {

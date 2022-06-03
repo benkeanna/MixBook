@@ -5,7 +5,6 @@ import deleteIngredient from "../services/deleteIngredient.service";
 import postIngredient from "../services/postIngredient.service";
 import putIngredient from "../services/putIngredient.service";
 
-import { ErrorsContext } from "./errors.context";
 import { DialogsContext } from "./dialogs.contexts";
 
 export const IngredientsContext = createContext({
@@ -26,7 +25,6 @@ export const IngredientsProvider = ({ children }) => {
     setShowEditIngredientDialog,
   } = useContext(DialogsContext);
   useEffect(() => {
-    console.log("here");
     getIngredients()
       .then((data) => {
         setIngredients(data);
@@ -38,26 +36,16 @@ export const IngredientsProvider = ({ children }) => {
 
   const deleteIngredientHandler = (id) => {
     setShowDeleteIngredientDialog(false);
-    deleteIngredient(id)
-      .then(() => {
-        setRender(!render);
-      })
-      .catch(() => {
-        setTimeout(() => {
-          setRender(!render);
-        }, 3000);
-      });
+    deleteIngredient(id).then(() => {
+      setRender(!render);
+    });
   };
 
   const addIngredientHandler = (ingredient) => {
     setShowAddIngredientDialog(false);
-    postIngredient(ingredient)
-      .then(() => {
-        setRender(!render);
-      })
-      .catch(() => {
-        setRender(!render);
-      });
+    postIngredient(ingredient).then(() => {
+      setRender(!render);
+    });
   };
 
   const editIngredientHandler = (ingredient) => {
