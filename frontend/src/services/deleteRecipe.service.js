@@ -1,6 +1,7 @@
 import { API_SERVER } from "../utils/server_url.util";
 
 export default function deleteRecipe(id) {
+  id = +id;
   return fetch(`${API_SERVER}/api/ingredients/${id}`, {
     method: "DELETE",
   })

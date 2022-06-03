@@ -13,7 +13,7 @@ const Detail = () => {
 
   const { id } = useParams();
   let intId = parseInt(id);
-  const { initRecipes, deleteRecipeHandler } = useContext(RecipesContext);
+  const { initRecipes } = useContext(RecipesContext);
 
   useEffect(() => {
     setRecipe(

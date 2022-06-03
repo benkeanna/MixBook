@@ -2,11 +2,14 @@ import { createContext, useState, useEffect } from "react";
 
 import getRecipes from "../services/getRecipes.service";
 import deleteRecipe from "../services/deleteRecipe.service";
+import postRecipe from "../services/postRecipe.service";
 
 export const RecipesContext = createContext({
   initRecipes: [],
   recipes: [],
   setRecipes: () => {},
+  deleteRecipeHandler: () => {},
+  addEventListener: () => {},
 });
 
 export const RecipesProvider = ({ children }) => {
@@ -16,6 +19,11 @@ export const RecipesProvider = ({ children }) => {
 
   const deleteRecipeHandler = (id) => {
     deleteRecipe(id);
+    setRender(!render);
+  };
+
+  const addRecipeHandler = (recipe) => {
+    postRecipe(recipe);
     setRender(!render);
   };
 
@@ -36,6 +44,8 @@ export const RecipesProvider = ({ children }) => {
         initRecipes,
         recipes,
         setRecipes,
+        deleteRecipeHandler,
+        addRecipeHandler,
       }}
     >
       {children}
