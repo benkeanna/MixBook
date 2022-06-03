@@ -20,35 +20,44 @@ export const IngredientsProvider = ({ children }) => {
   const [ingredients, setIngredients] = useState([]);
   const [render, setRender] = useState(false);
 
-  const { errorHandler } = useContext(ErrorsContext);
   const {
     setShowDeleteIngredientDialog,
     setShowAddIngredientDialog,
     setShowEditIngredientDialog,
   } = useContext(DialogsContext);
   useEffect(() => {
+    console.log("here");
     getIngredients()
       .then((data) => {
         setIngredients(data);
       })
       .catch((err) => {
-        errorHandler(err.message);
+        console.log(err);
       });
   }, [render]);
 
   const deleteIngredientHandler = (id) => {
     setShowDeleteIngredientDialog(false);
-    deleteIngredient(id).then(() => {
-      setRender(!render);
-    });
+    deleteIngredient(id)
+      .then(() => {
+        setRender(!render);
+      })
+      .catch(() => {
+        setTimeout(() => {
+          setRender(!render);
+        }, 3000);
+      });
   };
 
   const addIngredientHandler = (ingredient) => {
-    setIngredients([...ingredients, ingredient]);
     setShowAddIngredientDialog(false);
-    postIngredient(ingredient).then((data) => {
-      setRender(!render);
-    });
+    postIngredient(ingredient)
+      .then(() => {
+        setRender(!render);
+      })
+      .catch(() => {
+        setRender(!render);
+      });
   };
 
   const editIngredientHandler = (ingredient) => {
