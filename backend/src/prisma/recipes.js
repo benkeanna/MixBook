@@ -10,7 +10,7 @@ async function getRecipes() {
     for (let i = 0; i < recipes.length; i++) {
         let recipeIngredients = await prisma.recipeIngredient.findMany({
             where: {
-                recipeId: recipes[i].id,
+                recipeId: parseInt(recipes[i].id),
             }
         });
         let ingredientList = [];
@@ -18,10 +18,10 @@ async function getRecipes() {
         for (let j = 0; j < recipeIngredients.length; j++) {
             ing = await prisma.ingredient.findUnique({
                 where: {
-                    id: recipeIngredients[j].ingredientId,
+                    id: parseInt(recipeIngredients[j].ingredientId),
                 }
             });
-            ing.amount = recipeIngredients[j].amount;
+            ing.amount = parseInt(recipeIngredients[j].amount);
             ingredientList.push(ing);
         }
         recipes[i].ingredients = ingredientList;
@@ -41,9 +41,9 @@ async function createRecipe(recipe) {
     for (let i = 0; i < recipe.ingredients.length; i++) {
         await prisma.recipeIngredient.create({
             data: {
-                recipeId: createdRecipe.id,
-                ingredientId: recipe.ingredients[i].id,
-                amount: recipe.ingredients[i].amount
+                recipeId: parseInt(createdRecipe.id),
+                ingredientId: parseInt(recipe.ingredients[i].id),
+                amount: parseInt(recipe.ingredients[i].amount)
             },
         });
     }
@@ -54,9 +54,9 @@ function updateRecipeIngredient(createdRecipe, recipe) {
     let result = [];
     for (let i = 0; i < recipe.ingredients.length; i++) {
         let object;
-            object.recipeId = createdRecipe.id;
-            object.ingredientId = recipe.ingredients[i].id;
-            object.amount = recipe.ingredients[i].amount;
+            object.recipeId = parseInt(createdRecipe.id);
+            object.ingredientId = parseInt(recipe.ingredients[i].id);
+            object.amount = parseInt(recipe.ingredients[i].amount);
             result.push(object);
     }
     return result;
@@ -80,7 +80,7 @@ async function updateRecipe(id, req) {
             await prisma.recipeIngredient.delete({
                 where: {
                     recipeId: id,
-                    ingredientId: req.deleteIngredients[i].id,
+                    ingredientId: parseInt(req.deleteIngredients[i].id),
                 },
             });
         }
@@ -88,19 +88,19 @@ async function updateRecipe(id, req) {
             await prisma.recipeIngredient.create({
                 data: {
                     recipeId: id,
-                    ingredientId: req.addIngredients[j].id,
-                    amount: req.addIngredients[j].amount,
+                    ingredientId: parseInt(req.addIngredients[j].id),
+                    amount: parseInt(req.addIngredients[j].amount),
                 },
             });
         }
         for (let k = 0; i < req.modIngredients.length; k++) {
             await prisma.recipeIngredient.update({
                 where: {
-                    recipeId: id,
-                    ingredientId: req.modIngredients[k].id,
+                    recipeId: parseInt(id),
+                    ingredientId: parseInt(req.modIngredients[k].id),
                 },
                 data: {
-                    amount: req.modIngredients[k].amount,
+                    amount: parseInt(req.modIngredients[k].amount),
                 },
             });
         }
