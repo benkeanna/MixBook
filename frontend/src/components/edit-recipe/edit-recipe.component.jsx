@@ -11,11 +11,9 @@ import "./edit-recipe.styles.scss";
 const EditRecipe = ({ recipe, showEdit, setShowEdit }) => {
   const { ingredients } = useContext(IngredientsContext);
   const { editRecipeHandler } = useContext(RecipesContext);
+
   const [editRecipe, setEditRecipe] = useState(recipe);
-  const [ingredientsToAdd, setIngredientsToAdd] = useState([
-    ingredients,
-    ...recipe.ingredients,
-  ]);
+  const [ingredientsToAdd, setIngredientsToAdd] = useState([]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;

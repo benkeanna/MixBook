@@ -17,7 +17,7 @@ const IngredientsBox = ({
       });
       if (existingIngredient) {
         setIngredientsToAdd(
-          ingredients.map((ingredient) => {
+          ingredientsToAdd.map((ingredient) => {
             if (ingredient.id === id) {
               return { ...ingredient, amount: ingredient.amount + 1 };
             } else {
