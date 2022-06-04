@@ -17,8 +17,8 @@ body('name').isLength({ min: 1 }),
 body('name').isLength({ max: 50 }),
 body('description').isLength({ max: 1000 }),
 body('description').isLength({ min: 5 }),
-body('description').isLength({ max: 10 }),
-body('description').isLength({ min: 1 }),
+body('unit').isLength({ max: 10 }),
+body('unit').isLength({ min: 1 }),
 async function (req, res, next) {
   const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -38,8 +38,8 @@ body('name').isLength({ min: 1 }),
 body('name').isLength({ max: 50 }),
 body('description').isLength({ max: 1000 }),
 body('description').isLength({ min: 5 }),
-body('description').isLength({ max: 10 }),
-body('description').isLength({ min: 1 }),
+body('unit').isLength({ max: 10 }),
+body('unit').isLength({ min: 1 }),
 async function (req, res, next) {
   const errors = validationResult(req);
     if (!errors.isEmpty()) {
