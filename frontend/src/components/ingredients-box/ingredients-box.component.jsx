@@ -46,6 +46,7 @@ const IngredientsBox = ({
             max={69}
             onChange={handleChange}
           />{" "}
+          {ingredient.unit}
         </div>
       ))}
     </div>
