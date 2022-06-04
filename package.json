@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "@prisma/client": "^3.12.0",
-    "express-validator": "^6.14.1"
+    "@prisma/client": "^3.12.0"
   }
 }
