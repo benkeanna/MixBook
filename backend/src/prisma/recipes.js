@@ -81,15 +81,16 @@ async function updateRecipe(id, recipe) {
             },
         });
         for (let i = 0; i < recipe.ingredients.length; i++) {
-            await prisma.recipeIngredient.create({
-                data: {
-                    recipeId: parseInt(updatedRecipe.id),
-                    ingredientId: parseInt(recipe.ingredients[i].id),
-                    amount: parseInt(recipe.ingredients[i].amount)
-                },
-            });
+            if (recipe.ingredients[i].amount != undefined) {
+                await prisma.recipeIngredient.create({
+                    data: {
+                        recipeId: parseInt(updatedRecipe.id),
+                        ingredientId: parseInt(recipe.ingredients[i].id),
+                        amount: parseInt(recipe.ingredients[i].amount)
+                    },
+                });
+            }
         }
-
     } catch (e) {
         throw e;
     }
