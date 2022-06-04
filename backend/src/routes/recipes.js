@@ -9,7 +9,6 @@ router.get('/', async function (req, res, next) {
     const result = await queries.getRecipes();
     res.json(result)
   } catch (e) {
-    console.log(e);
     res.status(500);
     res.send("Error in get recipes.");
   }
@@ -21,7 +20,6 @@ router.post('/', async function (req, res, next) {
     const result = await queries.createRecipe(req.body);
     res.json(result);
   } catch (e) {
-    console.log(e);
     res.status(500);
     res.send("Error in create recipe.");
   }
@@ -35,7 +33,6 @@ router.delete('/:id', async function (req, res, next) {
     res.status(204);
     res.send("Recipe id " + req.params.id + " was deleted.")
   } catch (e) {
-    console.log(e);
     res.status(500);
     res.send("Error in delete recipe.");
   }
@@ -50,7 +47,6 @@ router.put("/:id", async function (req, res, next) {
     );
     res.json(result);
   } catch (e) {
-    console.log(e);
     res.status(500);
     res.send("Error in update recipe.");
   }
