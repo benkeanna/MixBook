@@ -62,54 +62,38 @@ function updateRecipeIngredient(createdRecipe, recipe) {
     return result;
 }
 
-
-async function updateRecipe(id, req) {
+async function updateRecipe(id, recipe) {
     try {
-        let result = await prisma.recipe.update({
+        let updatedRecipe = await prisma.recipe.update({
             where: {
                 id: id,
             },
             data: {
-                name: req.name,
-                description: req.description,
-                preparation_length: req.preparationLength,
-                final_amount: final_amount + req.addIngredients.length - req.deleteIngredients.length,
+                name: recipe.name,
+                description: recipe.description,
+                preparation_length: recipe.preparationLength,
+                final_amount: recipe.ingredients.length
             }
         });
-        for (let i = 0; i < req.deleteIngredients.length; i++) {
-            await prisma.recipeIngredient.delete({
-                where: {
-                    recipeId: id,
-                    ingredientId: parseInt(req.deleteIngredients[i].id),
-                },
-            });
-        }
-        for (let j = 0; i < req.addIngredients.length; j++) {
+        await prisma.recipeIngredient.deleteMany({
+            where: {
+                recipeId: id,
+            },
+        });
+        for (let i = 0; i < recipe.ingredients.length; i++) {
             await prisma.recipeIngredient.create({
                 data: {
-                    recipeId: id,
-                    ingredientId: parseInt(req.addIngredients[j].id),
-                    amount: parseInt(req.addIngredients[j].amount),
+                    recipeId: parseInt(updatedRecipe.id),
+                    ingredientId: parseInt(recipe.ingredients[i].id),
+                    amount: parseInt(recipe.ingredients[i].amount)
                 },
             });
         }
-        for (let k = 0; i < req.modIngredients.length; k++) {
-            await prisma.recipeIngredient.update({
-                where: {
-                    recipeId: parseInt(id),
-                    ingredientId: parseInt(req.modIngredients[k].id),
-                },
-                data: {
-                    amount: parseInt(req.modIngredients[k].amount),
-                },
-            });
-        }
-        return result;
+
     } catch (e) {
-        throw e
+        throw e;
     }
 }
-
 
 async function deleteRecipe(id) {
     try {

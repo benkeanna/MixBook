@@ -43,7 +43,6 @@ export const RecipesProvider = ({ children }) => {
         throw new Error(err);
       });
   }, [render]);
-
   return (
     <RecipesContext.Provider
       value={{
