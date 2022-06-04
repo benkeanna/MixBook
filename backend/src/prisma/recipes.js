@@ -1,5 +1,4 @@
 const Prisma = require("prisma");
-const { DeleteRecipeError } = require('../errors');
 const { PrismaClient } = require('@prisma/client');
 
 const prisma = new PrismaClient()
@@ -48,18 +47,6 @@ async function createRecipe(recipe) {
         });
     }
     return createdRecipe;
-}
-
-function updateRecipeIngredient(createdRecipe, recipe) {
-    let result = [];
-    for (let i = 0; i < recipe.ingredients.length; i++) {
-        let object;
-            object.recipeId = parseInt(createdRecipe.id);
-            object.ingredientId = parseInt(recipe.ingredients[i].id);
-            object.amount = parseInt(recipe.ingredients[i].amount);
-            result.push(object);
-    }
-    return result;
 }
 
 async function updateRecipe(id, recipe) {

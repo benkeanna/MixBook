@@ -1,18 +1,18 @@
 const express = require("express");
 const router = express.Router();
 
-const queries = require("../prisma/ingredients");
+const business = require("../business/ingredients");
 const { DeleteIngredientError } = require("../errors");
 
 /* GET ingredients listing. */
 router.get("/", async function (req, res, next) {
-  const result = await queries.getIngredients();
+  const result = await business.getIngredients();
   res.json(result);
 });
 
 /* POST new ingredient. */
 router.post("/", async function (req, res, next) {
-  const result = await queries.createIngredient(
+  const result = await business.createIngredient(
     req.body.name,
     req.body.description,
     req.body.unit
@@ -22,7 +22,7 @@ router.post("/", async function (req, res, next) {
 
 /* PUT new ingredient. */
 router.put("/:id", async function (req, res, next) {
-  const result = await queries.updateIngredient(
+  const result = await business.updateIngredient(
     parseInt(req.params.id),
     req.body
   );
@@ -31,15 +31,13 @@ router.put("/:id", async function (req, res, next) {
 
 /* DELETE ingredient. */
 router.delete("/:id", async function (req, res, next) {
-  console.log(req.params.id);
   try {
-    await queries.deleteIngredient(parseInt(req.params.id));
+    await business.deleteIngredient(parseInt(req.params.id));
     res.status(204);
     res.send("Ingredient id " + req.params.id + " was deleted.")
   } catch (e) {
     if (e instanceof DeleteIngredientError) {
       res.status(403);
-      console.log(e);
       res.send(e.message);
     } else {
       console.log(e);
