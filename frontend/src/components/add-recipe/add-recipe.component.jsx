@@ -67,6 +67,9 @@ const AddRecipe = () => {
         <Button type="add" onClick={handleClick}>
           Add
         </Button>
+        <div onClick={() => setShowAddRecipeDialog(false)} className="close">
+          &#10005;
+        </div>
       </div>
     </div>
   );

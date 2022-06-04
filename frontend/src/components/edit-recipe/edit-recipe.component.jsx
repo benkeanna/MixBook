@@ -11,15 +11,17 @@ import "./edit-recipe.styles.scss";
 const EditRecipe = ({ recipe, showEdit, setShowEdit }) => {
   const { ingredients } = useContext(IngredientsContext);
   const { editRecipeHandler } = useContext(RecipesContext);
+
   const [editRecipe, setEditRecipe] = useState(recipe);
-  const [ingredientsToAdd, setIngredientsToAdd] = useState(recipe.ingredients);
+  const [ingredientsToAdd, setIngredientsToAdd] = useState([]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setEditRecipe({ ...recipe, [name]: value });
   };
   const handleClick = (e) => {
-    const finalRecipe = { ...recipe, ingredients: ingredientsToAdd };
+    const finalRecipe = { ...editRecipe, ingredients: ingredientsToAdd };
+    console.log(finalRecipe);
     editRecipeHandler(finalRecipe);
     setShowEdit(!showEdit);
   };
@@ -48,7 +50,7 @@ const EditRecipe = ({ recipe, showEdit, setShowEdit }) => {
           type="text"
           id="preparationLength"
           name="preparationLength"
-          value={editRecipe.preparationLength}
+          value={editRecipe.preparation_length}
           onChange={handleChange}
         />
         <IngredientsBox
