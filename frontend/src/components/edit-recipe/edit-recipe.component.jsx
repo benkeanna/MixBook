@@ -19,7 +19,7 @@ const EditRecipe = ({ recipe, showEdit, setShowEdit }) => {
     setEditRecipe({ ...recipe, [name]: value });
   };
   const handleClick = (e) => {
-    const finalRecipe = { ...recipe, ingredients: ingredientsToAdd };
+    const finalRecipe = { ...editRecipe, ingredients: ingredientsToAdd };
     editRecipeHandler(finalRecipe);
     setShowEdit(!showEdit);
   };
