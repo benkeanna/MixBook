@@ -1,13 +1,26 @@
 .recipe-card-container {
   padding: 0.5rem 1rem 1rem 1rem;
   box-shadow: -1px 6px 18px 0px #00000067;
-  background-color: #ffffff;
+  background-color: #FFF6F0;
+  border-radius: 15px;
+
 
   .desc {
+    // display: flex;
     margin-left: 2.2rem;
+    background-color: #FFF6F0;
+    box-shadow: none;
+    color: black;
   }
 }
 
 .icon {
   margin-right: 0.5rem;
+}
+
+.ingredients-container {
+  // display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  justify-content: flex-start;
 }

@@ -2,10 +2,10 @@ import "./filter-area.styles.scss";
 import IngredientCard from "../ingredient-card/ingredient-card.component";
 import BarLoader from "react-spinners/BarLoader";
 import { useContext } from "react";
-import { RecipesContext } from "../../contexts/recipes.context";
+import { IngredientsContext } from "../../contexts/ingredients.context";
 
 const FilterArea = () => {
-  const { ingredients } = useContext(RecipesContext);
+  const { ingredients } = useContext(IngredientsContext);
   return (
     <div className="filter-area-container">
       {ingredients ? (

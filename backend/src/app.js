@@ -6,21 +6,21 @@ const logger = require("morgan");
 const apiRouter = require("./routes");
 const recipesRoutes = require("./routes/recipes");
 const ingredientsRoutes = require("./routes/ingredients");
-const cors = require('cors')
-const app = express()
+const cors = require("cors");
+const app = express();
 
-app.use(cors())
+app.use(cors());
 
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "../../frontend/build")));
+app.use(express.static(path.join(__dirname, "../public")));
 
 // express static staci
 app.use("/api", apiRouter);
-app.use("/recipes", recipesRoutes);
-app.use("/ingredients", ingredientsRoutes);
+app.use("/api/recipes", recipesRoutes);
+app.use("/api/ingredients", ingredientsRoutes);
 
 // error handler
 app.use(function (err, req, res, next) {

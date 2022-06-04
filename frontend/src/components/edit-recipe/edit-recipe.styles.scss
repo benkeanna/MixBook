@@ -1,0 +1,11 @@
+.edit-recipe-container {
+  position: absolute;
+  top: 30%;
+  left: 30%;
+  transform: translate(-30%, -30%);
+  padding: 1rem 3rem;
+  box-shadow: -1px 6px 18px 0px #00000067;
+  background-color: #ffffff;
+  animation: scaleIn 0.2s ease-in-out;
+  animation-fill-mode: forwards;
+}

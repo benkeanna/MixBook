@@ -1,0 +1,28 @@
+.ingredient-manage-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 50%;
+  margin: auto;
+  padding: 0.5rem 1rem 1rem 1rem;
+  box-shadow: -1px 6px 18px 0px #00000067;
+  background-color: #FFF6F0;
+  border-radius: 15px;
+}
+span {
+  flex: 1;
+  gap: 2rem;
+}
+
+.delete {
+  color: #ff0000;
+  cursor: pointer;
+  margin: auto;
+}
+
+.edit {
+  cursor: pointer;
+  margin: auto;
+  
+}
