@@ -27,7 +27,7 @@ const EditRecipe = ({ recipe, showEdit, setShowEdit }) => {
   };
   return (
     <div className="edit-recipe-container">
-      Edit recipe
+      <h2>Edit recipe</h2>
       <div className="add-recipe-input-container">
         <label htmlFor="name">Name</label>
         <input
@@ -37,6 +37,7 @@ const EditRecipe = ({ recipe, showEdit, setShowEdit }) => {
           value={editRecipe.name}
           onChange={handleChange}
         />
+        <br></br>
         <label htmlFor="description">Description</label>
         <input
           type="text"
@@ -45,7 +46,8 @@ const EditRecipe = ({ recipe, showEdit, setShowEdit }) => {
           value={editRecipe.description}
           onChange={handleChange}
         />
-        <label htmlFor="preparationLength">Preparation Length</label>
+        <br></br>
+        <label htmlFor="preparationLength">Mixing takes</label>
         <input
           type="text"
           id="preparationLength"
@@ -53,6 +55,7 @@ const EditRecipe = ({ recipe, showEdit, setShowEdit }) => {
           value={editRecipe.preparation_length}
           onChange={handleChange}
         />
+        <label>minutes</label>
         <IngredientsBox
           ingredients={ingredients}
           ingredientsToAdd={ingredientsToAdd}
