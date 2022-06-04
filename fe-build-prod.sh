@@ -5,4 +5,5 @@ cd frontend
 npm install
 npm run build
 cd ..
+mkdir backend/public
 cp -r frontend/build/* backend/public/

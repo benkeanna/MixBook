@@ -9,6 +9,7 @@
   background-color: #ffffff;
   animation: scaleIn 0.2s ease-in-out;
   animation-fill-mode: forwards;
+  overflow: scroll;
 }
 
 @keyframes scaleIn {
@@ -18,4 +19,11 @@
   to {
     transform: scale(1);
   }
+}
+
+.close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  cursor: pointer;
 }
