@@ -1,15 +1,16 @@
 .add-recipe-container {
-  position: fixed;
-  top: 40%;
+  position: absolute;
+  top: 20%;
   left: 35%;
   transform: translate(-35%, -40%);
   width: 30vw;
   padding: 1rem;
   box-shadow: -1px 6px 18px 0px #00000067;
-  background-color: #ffffff;
+  background-color: #FFF6F0;
   animation: scaleIn 0.2s ease-in-out;
   animation-fill-mode: forwards;
-  overflow: scroll;
+  border-radius: 15px;
+  flex-direction: column;
 }
 
 @keyframes scaleIn {
@@ -27,3 +28,22 @@
   right: 1rem;
   cursor: pointer;
 }
+
+.preparationLengthDiv {
+  display: flex;
+
+  input[type="text"] {
+    width: 3rem;
+    margin-right: 0.5rem;
+  }
+}
+
+label {
+  margin-right: 0.5rem;
+}
+
+.descLabel {
+  display: table-header-group;
+}
+
+
