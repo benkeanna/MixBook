@@ -22,7 +22,7 @@ export const FilterProvider = ({ children }) => {
    * @description adds an ingredient to the filter stack and filters the recipes
    */
   const addIngredient = (ingredient) => {
-    filterIngredients.push(ingredient);
+    filterIngredients.push(ingredient.toLowerCase());
     filterRecipes();
   };
 
@@ -32,7 +32,7 @@ export const FilterProvider = ({ children }) => {
    * @description removes an ingredient from the filter stack and filters the recipes
    */
   const removeIngredient = (ingredient) => {
-    filterIngredients.pop(ingredient);
+    filterIngredients.pop(ingredient.toLowerCase());
     filterRecipes();
   };
 
@@ -44,10 +44,12 @@ export const FilterProvider = ({ children }) => {
       setRecipes(initRecipes);
     } else {
       const filteredRecipes = initRecipes.filter((recipe) => {
-        const recipeIngredients = recipe.ingredients;
-        return recipeIngredients.some((ingredient) =>
-          filterIngredients.includes(ingredient.toLowerCase())
-        );
+        const recipeIngredients = recipe.ingredients.map((ingredient) => {
+          return ingredient.name.toLowerCase();
+        });
+        return recipeIngredients.some((ingredient) => {
+          return filterIngredients.includes(ingredient.toLowerCase());
+        });
       });
       setRecipes(filteredRecipes);
     }
