@@ -47,7 +47,7 @@ const EditIngredient = () => {
           placeholder="unit"
           onChange={handleChange}
         />
-        <button onClick={handleClick}>Edit</button>
+        <button onClick={handleClick}>Safe</button>
       </div>
     </div>
   );

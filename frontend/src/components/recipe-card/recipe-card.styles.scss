@@ -4,7 +4,11 @@
   background-color: #ffffff;
 
   .desc {
+    display: flex;
     margin-left: 2.2rem;
+    background-color: white;
+    box-shadow: none;
+    color: black;
   }
 }
 
@@ -13,7 +17,7 @@
 }
 
 .ingredients-container {
-  display: flex;
+  // display: flex;
   align-items: center;
   gap: 0.2rem;
 }
