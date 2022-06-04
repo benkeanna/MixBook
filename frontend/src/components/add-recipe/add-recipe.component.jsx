@@ -53,7 +53,7 @@ const AddRecipe = () => {
         />
         <br></br>
         <div className="preparationLengthDiv">
-        <label htmlFor="preparationLength">Mixing Takes</label>
+        <label htmlFor="preparationLength">Mixing takes</label>
         <input
           type="text"
           id="preparationLength"
@@ -68,9 +68,11 @@ const AddRecipe = () => {
           ingredientsToAdd={ingredientsToAdd}
           setIngredientsToAdd={setIngredientsToAdd}
         />
-        <Button type="add" onClick={handleClick}>
-          Add
-        </Button>
+        <div className="addButton">
+          <Button type="add" onClick={handleClick}>
+            Add
+          </Button>
+        </div>
         <div onClick={() => setShowAddRecipeDialog(false)} className="close">
           &#10005;
         </div>

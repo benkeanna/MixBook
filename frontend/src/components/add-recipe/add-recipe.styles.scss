@@ -46,4 +46,16 @@ label {
   display: table-header-group;
 }
 
+.amountAndUnit {
+  float: right;
+}
 
+.oneIngredient {
+  width: 3rem;
+  margin-right: 0.5rem;
+  float:  left;
+}
+
+.unit {
+  text-align: right;
+}
