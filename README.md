@@ -16,6 +16,8 @@ https://trello.com/b/IcagYj44/bcaa-projekt
 
 - Run it.
 
+`./fe-build-prod.sh`
+
 `docker-compose up`
 
 - Stop it.
@@ -27,9 +29,23 @@ https://trello.com/b/IcagYj44/bcaa-projekt
 `docker-compose up --build --force-recreate`
 
 - Prepare db.
-  `docker-compose exec backend npx prisma migrate dev --name init --schema src/prisma/schema.prisma`
+  
+
+`docker-compose exec backend npx prisma migrate dev --name init --schema src/prisma/schema.prisma`
+
+
   `docker-compose exec backend npx prisma generate --schema src/prisma/schema.prisma`
+
+
   `docker-compose exec backend npx prisma db seed`
+
+- Delete and reseed db.
+
+`docker volume rm mixbook_pgdata`
+
+`docker-compose up --renew-anon-volumes`
+
+`docker-compose exec backend npx prisma db seed`
 
 - See it.
 
