@@ -17,7 +17,7 @@ const IngredientsBox = ({
       });
       if (existingIngredient) {
         setIngredientsToAdd(
-          ingredientsToAdd.map((ingredient) => {
+          ingredients.map((ingredient) => {
             if (ingredient.id === id) {
               return { ...ingredient, amount: ingredient.amount + 1 };
             } else {
@@ -41,7 +41,7 @@ const IngredientsBox = ({
             type="number"
             name="amount"
             id={ingredient.id}
-            defaultValue={0}
+            defaultValue={ingredient?.amount || 0}
             min={0}
             max={69}
             onChange={handleChange}
