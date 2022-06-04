@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const { body, validationResult } = require('express-validator');
 
 const queries = require("../prisma/recipes");
 
@@ -15,7 +16,16 @@ router.get('/', async function (req, res, next) {
 });
 
 /* CREATE recipe. */
-router.post('/', async function (req, res, next) {
+router.post('/', 
+body('name').isLength({ min: 1 }),
+body('name').isLength({ max: 50 }),
+body('description').isLength({ max: 1000 }),
+body('description').isLength({ min: 5 }),
+async function (req, res, next) {
+  const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
   try {
     const result = await queries.createRecipe(req.body);
     res.json(result);
@@ -27,7 +37,8 @@ router.post('/', async function (req, res, next) {
 
 
 /* DELETE recipe. */
-router.delete('/:id', async function (req, res, next) {
+router.delete('/:id', 
+async function (req, res, next) {
   try {
     await queries.deleteRecipe(parseInt(req.params.id));
     res.status(204);
@@ -39,7 +50,16 @@ router.delete('/:id', async function (req, res, next) {
 });
 
 /* UPDATE recipe. */
-router.put("/:id", async function (req, res, next) {
+router.put("/:id", 
+body('name').isLength({ min: 1 }),
+body('name').isLength({ max: 50 }),
+body('description').isLength({ max: 1000 }),
+body('description').isLength({ min: 5 }),
+async function (req, res, next) {
+  const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
   try {
     const result = await queries.updateRecipe(
       parseInt(req.params.id),
