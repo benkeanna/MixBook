@@ -23,10 +23,8 @@ router.post("/", async function (req, res, next) {
 /* PUT new ingredient. */
 router.put("/:id", async function (req, res, next) {
   const result = await queries.updateIngredient(
-    req.params.id,
-    req.body.name,
-    req.body.description,
-    req.body.unit
+    parseInt(req.params.id),
+    req.body
   );
   res.json(result);
 });
@@ -35,8 +33,9 @@ router.put("/:id", async function (req, res, next) {
 router.delete("/:id", async function (req, res, next) {
   console.log(req.params.id);
   try {
-    await queries.deleteIngredient(req.params.id);
+    await queries.deleteIngredient(parseInt(req.params.id));
     res.status(204);
+    res.send("Ingredient id " + req.params.id + " was deleted.")
   } catch (e) {
     if (e instanceof DeleteIngredientError) {
       res.status(403);

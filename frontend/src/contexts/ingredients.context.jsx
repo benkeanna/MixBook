@@ -3,9 +3,8 @@ import { createContext, useState, useEffect, useContext } from "react";
 import getIngredients from "../services/getIngredients.service";
 import deleteIngredient from "../services/deleteIngredient.service";
 import postIngredient from "../services/postIngredient.service";
-import putIngredient from "../services/putIngredient.service.js";
+import putIngredient from "../services/putIngredient.service";
 
-import { ErrorsContext } from "./errors.context";
 import { DialogsContext } from "./dialogs.contexts";
 
 export const IngredientsContext = createContext({
@@ -20,7 +19,6 @@ export const IngredientsProvider = ({ children }) => {
   const [ingredients, setIngredients] = useState([]);
   const [render, setRender] = useState(false);
 
-  const { errorHandler } = useContext(ErrorsContext);
   const {
     setShowDeleteIngredientDialog,
     setShowAddIngredientDialog,
@@ -32,21 +30,19 @@ export const IngredientsProvider = ({ children }) => {
         setIngredients(data);
       })
       .catch((err) => {
-        errorHandler(err.message);
+        console.log(err);
       });
   }, [render]);
 
   const deleteIngredientHandler = (id) => {
     setShowDeleteIngredientDialog(false);
-    deleteIngredient(id).then(() => {
-      setRender(!render);
-    });
+    deleteIngredient(id);
+    setRender(!render);
   };
 
   const addIngredientHandler = (ingredient) => {
-    setIngredients([...ingredients, ingredient]);
     setShowAddIngredientDialog(false);
-    postIngredient(ingredient).then((data) => {
+    postIngredient(ingredient).then(() => {
       setRender(!render);
     });
   };

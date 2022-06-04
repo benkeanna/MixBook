@@ -1,6 +1,8 @@
-export default function putIngredient(ingredient) {
-  return fetch(`http://localhost:3001/api/ingredients`, {
-    method: "PUT",
+import { API_SERVER } from "../utils/server_url.util";
+
+export default function postRecipe(ingredient) {
+  return fetch(`${API_SERVER}/api/recipes`, {
+    method: "POST",
     headers: {
       "Content-Type": "application/json",
     },

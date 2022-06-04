@@ -21,17 +21,24 @@ async function getIngredients() {
 }
 
 
-async function updateIngredient(id, name, description, unit) {
-    return await prisma.ingredient.update({
-        where: {
-            id: id,
-        },
-        data: {
-            name,
-            description,
-            unit
-        }
-    })
+async function updateIngredient(id, req) {
+    let result
+    try {
+        result = await prisma.ingredient.update({
+            where: {
+                id: id,
+            },
+            data: {
+                name: req.name,
+                description: req.description,
+                unit: req.unit
+            }})
+    }
+    catch (e) {
+        console.log(e)
+        throw e
+    }
+    return result
 }
 
 

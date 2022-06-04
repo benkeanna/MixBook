@@ -20,7 +20,14 @@ const Header = ({ type }) => {
         <div className="nav">
           <FilterAreaButton />
           <SearchBox />
-          <Button type="add">Add recipe</Button>
+          <Button
+            type="add"
+            onClick={() => {
+              setShowAddRecipeDialog(true);
+            }}
+          >
+            Add recipe
+          </Button>
           <Link to="/ingredients">
             <Button type="add">Manage ingredients</Button>
           </Link>
