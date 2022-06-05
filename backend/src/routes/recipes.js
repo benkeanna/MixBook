@@ -19,6 +19,7 @@ router.get('/', async function (req, res, next) {
 router.post('/', async function (req, res, next) {
   try {
     const result = await queries.createRecipe(req.body);
+    res.status(204);
     res.json(result);
   } catch (e) {
     console.log(e);
@@ -48,6 +49,7 @@ router.put("/:id", async function (req, res, next) {
       parseInt(req.params.id),
       req.body
     );
+    res.status(204);
     res.json(result);
   } catch (e) {
     console.log(e);
