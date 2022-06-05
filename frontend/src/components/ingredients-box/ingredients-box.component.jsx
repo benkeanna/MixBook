@@ -37,16 +37,20 @@ const IngredientsBox = ({
         <div key={ingredient.id}>
           {" "}
           {ingredient.name}{" "}
-          <input
-            type="number"
-            name="amount"
-            id={ingredient.id}
-            defaultValue={ingredient?.amount || 0}
-            min={0}
-            max={69}
-            onChange={handleChange}
-          />{" "}
-          {ingredient.unit}
+          <div className="amountAndUnit">
+            <input
+              className="oneIngredient"
+              type="text"
+              pattern="[0-9]*"
+              name="amount"
+              id={ingredient.id}
+              defaultValue={ingredient?.amount || 0}
+              min={0}
+              max={300}
+              onChange={handleChange}
+            />
+            <label className="unit">{ingredient.unit}</label>
+          </div>
         </div>
       ))}
     </div>

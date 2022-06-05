@@ -3,8 +3,16 @@ import { AiFillTag } from "react-icons/ai";
 
 import "./recipe-card.styles.scss";
 
+const limit = 50
+let descToShow = ''
+
 const RecipeCard = ({ recipe }) => {
   const { id, name, description, ingredients } = recipe;
+  if (description.length <= limit) {
+    descToShow = description
+  } else {
+    descToShow = description.substring(0, limit) + "...";
+  }
   return (
     <div className="recipe-card-container">
       <Link to={`/recipe/${id}`}>
@@ -13,10 +21,11 @@ const RecipeCard = ({ recipe }) => {
         <div className="ingredients-container">
           <AiFillTag className="icon" />
           {ingredients.map((ingredient, index) => (
-            <div key={index}>{ingredient.name}, </div>
+            <div className="recipeIngredients" key={index}>{ingredient.name}, </div>
           ))}
         </div>
-        <span className="desc">{description}</span>
+        <hr></hr>
+        <span className="descriptionOfRecipe">{descToShow}</span>
       </Link>
     </div>
   );

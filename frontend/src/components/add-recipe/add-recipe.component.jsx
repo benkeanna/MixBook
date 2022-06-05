@@ -32,7 +32,7 @@ const AddRecipe = () => {
   };
 
   return (
-    <div className="add-recipe-container">
+    <div className="add-recipe-container flex">
       <h1>Add Recipe</h1>
       <div className="add-recipe-input-container">
         <label htmlFor="name">Name</label>
@@ -43,15 +43,17 @@ const AddRecipe = () => {
           value={recipe.name}
           onChange={handleChange}
         />
-        <label htmlFor="description">Description</label>
-        <input
-          type="text"
+        <br></br>
+        <label htmlFor="description" className="descLabel">Description</label>
+        <textarea
           name="description"
           id="description"
           value={recipe.description}
           onChange={handleChange}
         />
-        <label htmlFor="preparationLength">Preparation Length</label>
+        <br></br>
+        <div className="preparationLengthDiv">
+        <label htmlFor="preparationLength">Mixing takes</label>
         <input
           type="text"
           id="preparationLength"
@@ -59,14 +61,18 @@ const AddRecipe = () => {
           value={recipe.preparationLength}
           onChange={handleChange}
         />
+        <label htmlFor="preparationLength">minutes</label>
+        </div>
         <IngredientsBox
           ingredients={ingredients}
           ingredientsToAdd={ingredientsToAdd}
           setIngredientsToAdd={setIngredientsToAdd}
         />
-        <Button type="add" onClick={handleClick}>
-          Add
-        </Button>
+        <div className="addButton">
+          <Button type="add" onClick={handleClick}>
+            Add
+          </Button>
+        </div>
         <div onClick={() => setShowAddRecipeDialog(false)} className="close">
           &#10005;
         </div>
